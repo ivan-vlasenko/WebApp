@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DishDao {
+public class AllDishDao {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String MySQL_PATH = "jdbc:mysql://localhost:3306/restaurant";
     private static final String LOGIN = "root";
@@ -15,7 +15,7 @@ public class DishDao {
 
     private List<Dish> dishes;
 
-    public DishDao() {
+    public AllDishDao() {
         dishes = new ArrayList<>();
     }
 
@@ -32,16 +32,18 @@ public class DishDao {
 
             statement = conn.createStatement();
 
-            resultSet = statement.executeQuery("SELECT id, name FROM dishes");
+            resultSet = statement.executeQuery("SELECT id, name, cuisine, category FROM menu");
 
-            if (statement.execute("SELECT id, name FROM dishes")) {
+            if (statement.execute("SELECT id, name, cuisine, category FROM menu")) {
                 resultSet = statement.getResultSet();
             }
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                dishes.add(new Dish(id, name));
+                String cuisine = resultSet.getString("cuisine");
+                String category = resultSet.getString("category");
+                dishes.add(new Dish(id, name, cuisine, category));
             }
 
         } catch (SQLException ex) {
