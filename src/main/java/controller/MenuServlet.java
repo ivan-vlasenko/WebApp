@@ -17,6 +17,5 @@ public class MenuServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/menu.jsp");
         dispatcher.forward(req, resp);
-
     }
 }

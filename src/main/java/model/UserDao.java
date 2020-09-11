@@ -1,6 +1,6 @@
 package model;
 
-import entity.User;
+import entity.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -42,5 +42,35 @@ public class UserDao {
         }
 
         return status;
+    }
+
+    public static boolean loginDao(String log, String pass) {
+        Connection con = null;
+        try {
+            con = getConnection();
+
+            Statement st = con.createStatement();
+
+            String query = "select user_id from users where login='" + log + "' and password='" + pass + "'";
+
+            ResultSet rs = st.executeQuery(query);
+
+            if (rs.next()) {
+                rs.close();
+                st.close();
+                con.close();
+                return true;
+            }
+
+            rs.close();
+            st.close();
+            con.close();
+            return false;
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return false;
     }
 }

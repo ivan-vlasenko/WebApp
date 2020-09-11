@@ -33,6 +33,9 @@ public class RegistrationServlet extends HttpServlet {
         } else {
             User user = new User(login, password, email);
             status = save(user);
+            if (status > 0) {
+                response.sendRedirect("/account.jsp?login="+login);
+            }
         }
     }
 }
