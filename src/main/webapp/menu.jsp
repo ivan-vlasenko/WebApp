@@ -41,8 +41,9 @@
 <body>
 <nav>
     <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="menu">Menu</a></li>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="menu">MENU</a></li>
+        <li><a href=""></a></li>
     </ul>
 </nav>
 <div class="container">
