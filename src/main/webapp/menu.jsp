@@ -55,49 +55,67 @@
     <div align="middle">
         <div align="middle">
             <h4>APPETIZER</h4>
+            <br>
             <% for (Appetizer appetizer : appetizers) {
                 out.print("<p>" + appetizer.getName().toUpperCase() + "</p>");
+                out.print("<p>" + appetizer.getCuisine().toLowerCase() + " cuisine" + "</p>");
             } %>
+            <br>
         </div>
     </div>
     <div align="middle">
         <div align="middle">
             <h4>FIRST COURSE</h4>
+            <br>
             <% for (Soup soup : soupList) {
                 out.print("<p>" + soup.getName().toUpperCase() + "</p>");
+                out.print("<p>" + soup.getCuisine().toLowerCase() + " cuisine" + "</p>");
             } %>
+            <br>
         </div>
     </div>
     <div align="middle">
         <div align="middle">
             <h4>MAIN COURSE</h4>
+            <br>
             <% for (MainDish mainDish : mains) {
                 out.print("<p>" + mainDish.getName().toUpperCase() + "</p>");
+                out.print("<p>" + mainDish.getCuisine().toLowerCase() + " cuisine" + "</p>");
             } %>
+            <br>
         </div>
     </div>
     <div align="middle">
         <div align="middle">
             <h4>DESSERT</h4>
+            <br>
             <% for (Dessert dessert : desserts) {
                 out.print("<p>" + dessert.getName().toUpperCase() + "</p>");
+                out.print("<p>" + dessert.getCuisine().toLowerCase() + " cuisine" + "</p>");
             } %>
+            <br>
         </div>
     </div>
     <div align="middle">
         <div align="middle">
             <h4>DRINKS</h4>
+            <br>
             <% for (Drink drink : drinks) {
                 out.print("<p>" + drink.getName().toUpperCase() + "</p>");
+                out.print("<p>" + drink.getCuisine().toLowerCase() + " cuisine" + "</p>");
             } %>
+            <br>
         </div>
     </div>
     <div align="middle">
         <div align="middle">
             <h4>ALCOHOL DRINKS</h4>
+            <br>
             <% for (AlcoholDrink alcoholDrink : alcoholDrinks) {
                 out.print("<p>" + alcoholDrink.getName().toUpperCase() + "</p>");
+                out.print("<p>" + alcoholDrink.getCuisine().toLowerCase() + " cuisine" + "</p>");
             } %>
+            <br>
         </div>
     </div>
 </div>
