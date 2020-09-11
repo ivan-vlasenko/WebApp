@@ -6,16 +6,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static model.Dao.getConnection;
 
-public class AllDishDao {
-    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String MySQL_PATH = "jdbc:mysql://localhost:3306/restaurant";
-    private static final String LOGIN = "root";
-    private static final String PASS = "635805";
 
+public class MenuDao {
     private List<Dish> dishes;
 
-    public AllDishDao() {
+    public MenuDao() {
         dishes = new ArrayList<>();
     }
 
@@ -23,12 +20,12 @@ public class AllDishDao {
         return dishes;
     }
 
-    public void dataBase() {
+    public List<Dish> selectAllMenu() {
         Connection conn;
         Statement statement = null;
         ResultSet resultSet = null;
         try {
-            conn = DriverManager.getConnection(MySQL_PATH, LOGIN, PASS);
+            conn = getConnection();
 
             statement = conn.createStatement();
 
@@ -78,14 +75,6 @@ public class AllDishDao {
                 statement = null;
             }
         }
+        return dishes;
     }
-
-    public void driverRegister() {
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

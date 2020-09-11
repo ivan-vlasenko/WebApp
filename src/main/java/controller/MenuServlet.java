@@ -1,8 +1,5 @@
 package controller;
 
-import entity.*;
-import model.AllDishDao;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,13 +1,11 @@
-<%@ page import="model.AllDishDao" %>
+<%@ page import="model.MenuDao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="entity.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    AllDishDao allDishes = new AllDishDao();
-    allDishes.driverRegister();
-    allDishes.dataBase();
-    List<Dish> dishList = allDishes.getDishes();
+    MenuDao menuDao = new MenuDao();
+    List<Dish> menu = menuDao.selectAllMenu();
 
     List<Appetizer> appetizers = new ArrayList<>();
     List<Soup> soupList = new ArrayList<>();
@@ -16,7 +14,7 @@
     List<Drink> drinks = new ArrayList<>();
     List<AlcoholDrink> alcoholDrinks = new ArrayList<>();
 
-    for (Dish dish : dishList) {
+    for (Dish dish : menu) {
         if (dish instanceof Appetizer) {
             appetizers.add((Appetizer) dish);
         } else if (dish instanceof Soup) {
@@ -43,7 +41,8 @@
     <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="menu">MENU</a></li>
-        <li><a href=""></a></li>
+        <li><a href="sign-in">SIGN IN</a></li>
+        <li><a href="register">REGISTER</a></li>
     </ul>
 </nav>
 <div class="container">
