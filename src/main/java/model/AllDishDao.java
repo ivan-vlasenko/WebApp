@@ -1,6 +1,6 @@
 package model;
 
-import entity.Dish;
+import entity.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,18 +32,30 @@ public class AllDishDao {
 
             statement = conn.createStatement();
 
-            resultSet = statement.executeQuery("SELECT id, name, cuisine, category FROM menu");
+            resultSet = statement.executeQuery("SELECT name, cuisine, category FROM menu");
 
-            if (statement.execute("SELECT id, name, cuisine, category FROM menu")) {
+            if (statement.execute("SELECT name, cuisine, category FROM menu")) {
                 resultSet = statement.getResultSet();
             }
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String cuisine = resultSet.getString("cuisine");
                 String category = resultSet.getString("category");
-                dishes.add(new Dish(id, name, cuisine, category));
+                if (category.equalsIgnoreCase("Main")) {
+                    dishes.add(new MainDish(name, cuisine, category));
+                } else if (category.equalsIgnoreCase("dessert")) {
+                    dishes.add(new Dessert(name, cuisine, category));
+                } else if (category.equalsIgnoreCase("appetizer")) {
+                    dishes.add(new Appetizer(name, cuisine, category));
+                } else if (category.equalsIgnoreCase("drink")) {
+                    dishes.add(new Drink(name, cuisine, category));
+                } else if (category.equalsIgnoreCase("alcohol drink")) {
+                    dishes.add(new AlcoholDrink(name, cuisine, category));
+                } else if (category.equalsIgnoreCase("soup")) {
+                    dishes.add(new Soup(name, cuisine, category));
+                }
+
             }
 
         } catch (SQLException ex) {
