@@ -19,7 +19,7 @@ public class MenuFilter implements Filter {
         String login = req.getParameter("login");
 
         if (login.isEmpty()) {
-            req.getServletContext().getRequestDispatcher("sign.jsp").forward(req, resp);
+            req.getServletContext().getRequestDispatcher("sign-page.jsp").forward(req, resp);
         }*/
     }
 

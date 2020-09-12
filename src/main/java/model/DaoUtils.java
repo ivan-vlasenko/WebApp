@@ -3,7 +3,7 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Dao {
+public class DaoUtils {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String MySQL_PATH = "jdbc:mysql://localhost:3306/";
     private static final String DB = "restaurant";
@@ -19,5 +19,18 @@ public class Dao {
             System.out.println(e.toString());
         }
         return con;
+    }
+
+    public static void closeQuietly(AutoCloseable... resources) {
+        for (AutoCloseable closeable : resources) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (Exception sqlEx) {
+                    System.out.println(sqlEx.getMessage());
+                }
+                closeable = null;
+            }
+        }
     }
 }

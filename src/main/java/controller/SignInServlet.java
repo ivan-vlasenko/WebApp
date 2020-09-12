@@ -1,6 +1,6 @@
 package controller;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +16,11 @@ public class SignInServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.setAttribute("empty", null);
+        session.setAttribute("wrong", null);
 
         if (session.getAttribute("log") == null) {
-            response.sendRedirect("sign.jsp");
+            response.sendRedirect("sign-page.jsp");
         } else {
             response.sendRedirect("account.jsp");
         }
@@ -32,10 +34,12 @@ public class SignInServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         HttpSession session = request.getSession();
+        session.setAttribute("empty", null);
+        session.setAttribute("wrong", null);
 
         if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
             session.setAttribute("empty", "Login, password or email is empty!");
-            response.sendRedirect("sign.jsp");
+            response.sendRedirect("sign-page.jsp");
         } else {
 
             if (loginDao(login, password, email)) {
@@ -45,7 +49,7 @@ public class SignInServlet extends HttpServlet {
                 response.sendRedirect("index.jsp");
             } else {
                 session.setAttribute("wrong", "Login or password is invalid!");
-                response.sendRedirect("sign.jsp");
+                response.sendRedirect("sign-page.jsp");
             }
         }
     }

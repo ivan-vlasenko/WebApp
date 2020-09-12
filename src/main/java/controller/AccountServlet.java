@@ -1,7 +1,6 @@
 package controller;
 
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +17,7 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("log") == null) {
-            response.sendRedirect("sign.jsp");
+            response.sendRedirect("sign-page.jsp");
         } else {
             response.sendRedirect("account.jsp");
         }

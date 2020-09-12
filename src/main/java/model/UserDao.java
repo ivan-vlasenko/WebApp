@@ -3,21 +3,11 @@ package model;
 import entity.*;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-import static model.Dao.getConnection;
+
+import static model.DaoUtils.getConnection;
 
 public class UserDao {
-    private List<User> users;
-
-    public UserDao() {
-        users = new ArrayList<>();
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
 
     public static int save(User user) {
         Connection conn = null;
@@ -25,6 +15,7 @@ public class UserDao {
         int status = 0;
         try {
             conn = getConnection();
+            conn.setAutoCommit(false);
 
             statement = conn.prepareStatement(
                     "insert into users(login, email, password) values (?,?,?)");
@@ -34,18 +25,20 @@ public class UserDao {
 
             status = statement.executeUpdate();
 
-            conn.close();
+            conn.commit();
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        } finally {
+            DaoUtils.closeQuietly(statement, conn);
         }
 
         return status;
     }
 
     public static boolean loginDao(String log, String pass, String email) {
-        Connection con = null;
+        Connection con;
         try {
             con = getConnection();
 
@@ -58,15 +51,11 @@ public class UserDao {
             ResultSet rs = st.executeQuery(query);
 
             if (rs.next()) {
-                rs.close();
-                st.close();
-                con.close();
+                DaoUtils.closeQuietly(rs, st, con);
                 return true;
             }
 
-            rs.close();
-            st.close();
-            con.close();
+            DaoUtils.closeQuietly(rs, st, con);
             return false;
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -85,6 +74,7 @@ public class UserDao {
 
         try {
             conn = getConnection();
+            conn.setAutoCommit(false);
 
             statement = conn.prepareStatement(
                     "select from users (login, email, password) where (login = ?)");
@@ -99,14 +89,15 @@ public class UserDao {
                 user = new User(login, email, password);
             }
 
-            conn.close();
+            conn.commit();
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        } finally {
+            DaoUtils.closeQuietly(resultSet, statement, conn);
         }
 
         return user;
-
     }
 }

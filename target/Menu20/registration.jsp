@@ -17,6 +17,9 @@
     String pass = (String) session.getAttribute("pass");
     String email = (String) session.getAttribute("email");
 
+    String alreadyExistMessage = (String) session.getAttribute("alreadyExistMessage");
+    String emptyRegMessage = (String) session.getAttribute("emptyRegMessage");
+
     out.println(log);
     out.println(pass);
     out.println(email);
@@ -46,6 +49,15 @@
             <tr>
                 <td align="right">Email:</td>
                 <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td><br></td>
+                <td align="right">
+                    <%
+                        if (alreadyExistMessage != null) out.print(alreadyExistMessage);
+                        if (emptyRegMessage != null) out.print(emptyRegMessage);
+                    %>
+                </td>
             </tr>
             <tr>
                 <td></td>

@@ -2,13 +2,13 @@
   Created by IntelliJ IDEA.
   User: midicq
   Date: 9/11/2020
-  Time: 7:25 PM
+  Time: 5:11 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Sign-in</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,8 +17,8 @@
     String pass = (String) session.getAttribute("pass");
     String email = (String) session.getAttribute("email");
 
-    String empty = (String) session.getAttribute("empty");
-    String wrong = (String) session.getAttribute("wrong");
+    String alreadyExistMessage = (String) session.getAttribute("alreadyExistMessage");
+    String emptyRegMessage = (String) session.getAttribute("emptyRegMessage");
 
     out.println(log);
     out.println(pass);
@@ -34,10 +34,9 @@
     </ul>
 </nav>
 <div align="middle">
-    <h1>Sign-in</h1>
-    <p>Please enter login(nickname) and password.
-        Then click on Sign-in button.</p>
-    <form action="sign-in" method="post">
+    <h1>Registration</h1>
+    <p>To create an account enter login(nickname), password and email. Then click on Register button.</p>
+    <form action="register" method="post">
         <table>
             <tr>
                 <td align="right">Login:</td>
@@ -52,12 +51,17 @@
                 <td><input type="text" name="email"></td>
             </tr>
             <tr>
-                <td align="middle"><% if (empty != null) out.print(empty);%></td>
-                <td align="middle"><% if (wrong != null) out.print(wrong);%></td>
+                <td><br></td>
+                <td align="right">
+                    <%
+                        if (alreadyExistMessage != null) out.print(alreadyExistMessage);
+                        if (emptyRegMessage != null) out.print(emptyRegMessage);
+                    %>
+                </td>
             </tr>
             <tr>
                 <td></td>
-                <td><br><input type="submit" value="Sign-in"></td>
+                <td><br><input type="submit" value="Register"></td>
             </tr>
         </table>
     </form>

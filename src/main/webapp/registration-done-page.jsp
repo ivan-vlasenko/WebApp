@@ -31,7 +31,7 @@
     </ul>
 </nav>
 <div align="middle">
-    <h1>You already register, <%=log%>!</h1>
+    <h1>Register successful, <%=log%>!</h1>
 </div>
 </body>
 </html>

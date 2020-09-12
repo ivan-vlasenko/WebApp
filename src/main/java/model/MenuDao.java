@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static model.Dao.getConnection;
+import static model.DaoUtils.getConnection;
 
 
 public class MenuDao {
@@ -14,11 +14,12 @@ public class MenuDao {
     public List<Dish> selectAllMenu() {
         List<Dish> dishes = new ArrayList<>();
 
-        Connection conn;
+        Connection conn = null;
         Statement statement = null;
         ResultSet resultSet = null;
         try {
             conn = getConnection();
+            conn.setAutoCommit(false);
 
             statement = conn.createStatement();
 
@@ -48,25 +49,13 @@ public class MenuDao {
 
             }
 
+            conn.commit();
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException sqlEx) {
-                }
-                resultSet = null;
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException sqlEx) {
-                }
-                statement = null;
-            }
+            DaoUtils.closeQuietly(resultSet, statement, conn);
         }
         return dishes;
     }

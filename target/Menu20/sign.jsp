@@ -52,8 +52,13 @@
                 <td><input type="text" name="email"></td>
             </tr>
             <tr>
-                <td align="middle"><% if (empty != null) out.print(empty);%></td>
-                <td align="middle"><% if (wrong != null) out.print(wrong);%></td>
+                <td><br></td>
+                <td align="right">
+                    <%
+                    if (empty != null) out.print(empty);
+                    if (wrong != null) out.print(wrong);
+                    %>
+                </td>
             </tr>
             <tr>
                 <td></td>
