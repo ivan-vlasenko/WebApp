@@ -20,7 +20,7 @@ public class SignInServlet extends HttpServlet {
         if (session.getAttribute("log") == null) {
             response.sendRedirect("sign.jsp");
         } else {
-            response.sendRedirect("already-sign.jsp");
+            response.sendRedirect("account.jsp");
         }
 
 
@@ -33,12 +33,12 @@ public class SignInServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        if (login.isEmpty() || password.isEmpty()) {
-            session.setAttribute("empty", "Login or password is empty!");
+        if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
+            session.setAttribute("empty", "Login, password or email is empty!");
             response.sendRedirect("sign.jsp");
         } else {
 
-            if (loginDao(login, password)) {
+            if (loginDao(login, password, email)) {
                 session.setAttribute("log", login);
                 session.setAttribute("pass", password);
                 session.setAttribute("email", email);

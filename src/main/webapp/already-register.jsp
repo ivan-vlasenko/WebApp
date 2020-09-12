@@ -32,7 +32,6 @@
 </nav>
 <div align="middle">
     <h1>You already register, <%=log%>!</h1>
-
 </div>
 </body>
 </html>

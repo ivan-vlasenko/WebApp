@@ -32,13 +32,6 @@
 </nav>
 <div align="middle">
     <h1>You already sign-in, <%=log%>!</h1>
-    <br>
-    <br>
-    <div align="middle">
-        <form action="logout" method="get">
-            <input type="submit" value="Logout">
-        </form>
-    </div>
 </div>
 </body>
 </html>

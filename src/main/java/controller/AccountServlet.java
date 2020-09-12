@@ -18,7 +18,7 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("log") == null) {
-            response.sendRedirect("registration.jsp");
+            response.sendRedirect("sign.jsp");
         } else {
             response.sendRedirect("account.jsp");
         }

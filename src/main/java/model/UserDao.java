@@ -44,14 +44,16 @@ public class UserDao {
         return status;
     }
 
-    public static boolean loginDao(String log, String pass) {
+    public static boolean loginDao(String log, String pass, String email) {
         Connection con = null;
         try {
             con = getConnection();
 
             Statement st = con.createStatement();
 
-            String query = "select user_id from users where login='" + log + "' and password='" + pass + "'";
+            String query = "select user_id from users where login='" + log + "' " +
+                    "and password='" + pass + "' " +
+                    "and email='" + email + "'";
 
             ResultSet rs = st.executeQuery(query);
 

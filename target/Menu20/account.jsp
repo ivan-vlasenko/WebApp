@@ -31,10 +31,10 @@
     </ul>
 </nav>
     <div align="middle">
-        <h1>Welcome, <%=log%>!</h1>
+        <h1>Welcome to your account, <%=log%>!</h1>
         <p></p>
-        <form action="account" method="post">
             <table>
+                <form action="account" method="post">
                 <tr>
                     <td align="middle">Login:</td>
                     <td align="middle" contenteditable="true"><%=log%></td>
@@ -50,12 +50,17 @@
                     <td align="middle" contenteditable="true"><%=email%></td>
                     <td align="middle"><input type="submit" value="Change" formmethod="post"></td>
                 </tr>
-                <%--<tr>
+                </form>
+                <tr>
+                    <br>
                     <td></td>
-                    <td><br><input type="submit" value="Change field"></td>
-                </tr>--%>
+                    <td align="middle">
+                        <form action="logout" method="get">
+                            <input type="submit" value="Logout">
+                        </form>
+                    </td>
+                </tr>
             </table>
-        </form>
     </div>
 </body>
 </html>
