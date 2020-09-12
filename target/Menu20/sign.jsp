@@ -12,12 +12,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<%
+    String log = (String) session.getAttribute("log");
+    String pass = (String) session.getAttribute("pass");
+    String email = (String) session.getAttribute("email");
+
+    String empty = (String) session.getAttribute("empty");
+    String wrong = (String) session.getAttribute("wrong");
+
+    out.println(log);
+    out.println(pass);
+    out.println(email);
+%>
 <nav>
     <ul>
-        <li><a href="index.html">HOME</a></li>
+        <li><a href="index.jsp">HOME</a></li>
         <li><a href="menu">MENU</a></li>
         <li><a href="sign-in">SIGN IN</a></li>
         <li><a href="register">REGISTER</a></li>
+        <li><a href="account">ACCOUNT</a></li>
     </ul>
 </nav>
 <div align="middle">
@@ -33,6 +46,14 @@
             <tr>
                 <td align="right">Password:</td>
                 <td><input type="text" name="password"></td>
+            </tr>
+            <tr>
+                <td align="right">Email:</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td align="middle"><% if (empty != null) out.print(empty);%></td>
+                <td align="middle"><% if (wrong != null) out.print(wrong);%></td>
             </tr>
             <tr>
                 <td></td>

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static model.UserDao.save;
@@ -17,14 +18,22 @@ import static model.UserDao.save;
 public class RegistrationServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registration.jsp");
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("log") == null) {
+            response.sendRedirect("registration.jsp");
+        } else {
+            response.sendRedirect("already-register.jsp");
+        }
+
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+
+        HttpSession session;
 
         int status = 0;
 
@@ -34,7 +43,11 @@ public class RegistrationServlet extends HttpServlet {
             User user = new User(login, password, email);
             status = save(user);
             if (status > 0) {
-                response.sendRedirect("/account.jsp?login="+login);
+                session = request.getSession();
+                session.setAttribute("log", login);
+                session.setAttribute("pass", password);
+                session.setAttribute("email", email);
+                response.sendRedirect("/already-register.jsp");
             }
         }
     }

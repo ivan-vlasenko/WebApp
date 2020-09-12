@@ -10,17 +10,10 @@ import static model.Dao.getConnection;
 
 
 public class MenuDao {
-    private List<Dish> dishes;
-
-    public MenuDao() {
-        dishes = new ArrayList<>();
-    }
-
-    public List<Dish> getDishes() {
-        return dishes;
-    }
 
     public List<Dish> selectAllMenu() {
+        List<Dish> dishes = new ArrayList<>();
+
         Connection conn;
         Statement statement = null;
         ResultSet resultSet = null;
