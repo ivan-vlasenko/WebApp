@@ -1,3 +1,4 @@
+<%@ page import="java.util.concurrent.atomic.AtomicInteger" %>
 <%--
   Created by IntelliJ IDEA.
   User: midicq
@@ -13,6 +14,16 @@
 </head>
 <body>
 <%
+    AtomicInteger atomicSign = new AtomicInteger(5);
+    AtomicInteger atomicReg = new AtomicInteger(10);
+
+    if (session.getAttribute("signCount") == null) {
+        session.setAttribute("signCount", atomicSign);
+    }
+    if (session.getAttribute("regCount") == null) {
+        session.setAttribute("regCount", atomicReg);
+    }
+
     String log = (String) session.getAttribute("log");
     String pass = (String) session.getAttribute("pass");
     String email = (String) session.getAttribute("email");

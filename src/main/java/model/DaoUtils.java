@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DaoUtils {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -31,6 +32,19 @@ public class DaoUtils {
                 }
                 closeable = null;
             }
+        }
+    }
+
+    public static void rollbackQuietly(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                System.out.println("SQLException: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("VendorError: " + ex.getErrorCode());
+            }
+            connection = null;
         }
     }
 }
