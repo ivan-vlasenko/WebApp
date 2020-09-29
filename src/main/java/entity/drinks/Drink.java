@@ -1,16 +1,24 @@
-package entity;
+package entity.drinks;
 
 import java.util.Objects;
 
-public class Dish {
+public class Drink {
     private String name;
     private String cuisine;
     private String category;
 
-    public Dish(String name, String cuisine, String category) {
+    public Drink(String name, String cuisine, String category) {
         this.name = name;
         this.cuisine = cuisine;
         this.category = category;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCuisine() {
@@ -29,22 +37,14 @@ public class Dish {
         this.category = category;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Dish dish = (Dish) o;
-        return Objects.equals(name, dish.name) &&
-                Objects.equals(cuisine, dish.cuisine) &&
-                Objects.equals(category, dish.category);
+        Drink drink = (Drink) o;
+        return Objects.equals(name, drink.name) &&
+                Objects.equals(cuisine, drink.cuisine) &&
+                Objects.equals(category, drink.category);
     }
 
     @Override

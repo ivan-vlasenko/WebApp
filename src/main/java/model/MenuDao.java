@@ -1,6 +1,8 @@
 package model;
 
-import entity.*;
+import entity.dishes.*;
+import entity.drinks.AlcoholDrink;
+import entity.drinks.NonAlcoholDrink;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class MenuDao {
                 } else if (category.equalsIgnoreCase("appetizer")) {
                     dishes.add(new Appetizer(name, cuisine, category));
                 } else if (category.equalsIgnoreCase("drink")) {
-                    dishes.add(new Drink(name, cuisine, category));
+                    dishes.add(new NonAlcoholDrink(name, cuisine, category));
                 } else if (category.equalsIgnoreCase("alcohol drink")) {
                     dishes.add(new AlcoholDrink(name, cuisine, category));
                 } else if (category.equalsIgnoreCase("soup")) {

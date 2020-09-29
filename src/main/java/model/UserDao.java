@@ -1,6 +1,6 @@
 package model;
 
-import entity.*;
+import entity.user.User;
 
 import java.sql.*;
 

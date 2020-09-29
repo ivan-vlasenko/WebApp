@@ -2,6 +2,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="entity.*" %>
+<%@ page import="entity.drinks.AlcoholDrink" %>
+<%@ page import="entity.drinks.NonAlcoholDrink" %>
+<%@ page import="entity.dishes.*" %>
+<%@ page import="entity.drinks.NonAlcoholDrink" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     MenuDao menuDao = new MenuDao();
@@ -11,7 +15,7 @@
     List<Soup> soupList = new ArrayList<>();
     List<MainDish> mains = new ArrayList<>();
     List<Dessert> desserts = new ArrayList<>();
-    List<Drink> drinks = new ArrayList<>();
+    List<NonAlcoholDrink> nonAlcoholDrinks = new ArrayList<>();
     List<AlcoholDrink> alcoholDrinks = new ArrayList<>();
 
     for (Dish dish : menu) {
@@ -23,8 +27,8 @@
             mains.add((MainDish) dish);
         } else if (dish instanceof Dessert) {
             desserts.add((Dessert) dish);
-        } else if (dish instanceof Drink) {
-            drinks.add((Drink) dish);
+        } else if (dish instanceof NonAlcoholDrink) {
+            nonAlcoholDrinks.add((NonAlcoholDrink) dish);
         } else if (dish instanceof AlcoholDrink) {
             alcoholDrinks.add((AlcoholDrink) dish);
         }
@@ -110,9 +114,9 @@
         <div align="middle">
             <h4>DRINKS</h4>
             <br>
-            <% for (Drink drink : drinks) {
-                out.print("<p>" + drink.getName().toUpperCase() + "</p>");
-                out.print("<p>" + drink.getCuisine().toLowerCase() + " cuisine" + "</p>");
+            <% for (NonAlcoholDrink nonAlcoholDrink : nonAlcoholDrinks) {
+                out.print("<p>" + nonAlcoholDrink.getName().toUpperCase() + "</p>");
+                out.print("<p>" + nonAlcoholDrink.getCuisine().toLowerCase() + " cuisine" + "</p>");
             } %>
             <br>
         </div>

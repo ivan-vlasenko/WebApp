@@ -1,6 +1,6 @@
 package controller;
 
-import entity.User;
+import entity.user.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

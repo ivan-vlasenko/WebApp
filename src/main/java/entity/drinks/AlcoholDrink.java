@@ -1,7 +1,7 @@
-package entity;
+package entity.drinks;
 
 
-public class AlcoholDrink extends Dish {
+public class AlcoholDrink {
 
     public AlcoholDrink(String name, String cuisine, String category) {
         super(name, cuisine, category);
