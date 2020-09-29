@@ -5,6 +5,8 @@ public abstract class DishAbstractClass<T extends DishAbstractClass<T>> {
     private String cuisine;
     private String category;
 
+    private DishAbstractClass() {}
+
     public String getName() {
         return name;
     }
@@ -16,6 +18,8 @@ public abstract class DishAbstractClass<T extends DishAbstractClass<T>> {
     }
 
     public abstract class BaseBuilder<B extends BaseBuilder<B>>{
+
+        private BaseBuilder() {}
 
         public BaseBuilder<B> setCuisine(String cuisine) {
             DishAbstractClass.this.cuisine = cuisine;
