@@ -35,7 +35,11 @@ public class MenuDao {
                 String name = resultSet.getString("name");
                 String cuisine = resultSet.getString("cuisine");
                 String category = resultSet.getString("category");
-                if (category.equalsIgnoreCase("Main")) {
+
+                Dish dish = DishFactory.createDish(category);
+
+
+                /*if (category.equalsIgnoreCase("Main")) {
                     dishes.add(new MainDish(name, cuisine, category));
                 } else if (category.equalsIgnoreCase("dessert")) {
                     dishes.add(new Dessert(name, cuisine, category));
@@ -47,7 +51,7 @@ public class MenuDao {
                     dishes.add(new AlcoholDrink(name, cuisine, category));
                 } else if (category.equalsIgnoreCase("soup")) {
                     dishes.add(new Soup(name, cuisine, category));
-                }
+                }*/
 
             }
 
