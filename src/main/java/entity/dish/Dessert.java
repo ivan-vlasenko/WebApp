@@ -1,8 +1,9 @@
-package entity.dishes;
+package entity.dish;
 
 
 public class Dessert implements Dish {
     private String name;
+    private String cuisine;
     private String category;
 
     private Dessert() {}
@@ -10,9 +11,11 @@ public class Dessert implements Dish {
     public String getName() {
         return name;
     }
-
     public String getCategory() {
         return category;
+    }
+    public String getCuisine() {
+        return cuisine;
     }
 
     public static Builder newBuilder() {
@@ -25,6 +28,12 @@ public class Dessert implements Dish {
 
         public Builder setName(String name) {
             Dessert.this.name = name;
+
+            return this;
+        }
+
+        public Builder setCuisine(String cuisine) {
+            Dessert.this.cuisine = cuisine;
 
             return this;
         }

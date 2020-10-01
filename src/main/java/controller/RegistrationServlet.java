@@ -1,6 +1,7 @@
 package controller;
 
 import entity.user.User;
+import model.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static model.UserDao.save;
 
 @WebServlet(urlPatterns = "/register")
 public class RegistrationServlet extends HttpServlet {
@@ -50,7 +50,7 @@ public class RegistrationServlet extends HttpServlet {
                 response.sendRedirect("registration-page.jsp");
             } else {
                 User user = new User(login, password, email);
-                status = save(user);
+                status = UserDao.save(user);
                 if (status > 0) {
                     session.setAttribute("log", login);
                     session.setAttribute("pass", password);

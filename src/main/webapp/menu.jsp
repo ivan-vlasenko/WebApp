@@ -2,38 +2,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="entity.*" %>
-<%@ page import="entity.drinks.AlcoholDrink" %>
-<%@ page import="entity.drinks.NonAlcoholDrink" %>
-<%@ page import="entity.dishes.*" %>
-<%@ page import="entity.drinks.NonAlcoholDrink" %>
+<%@ page import="entity.dish.AlcoholDrink" %>
+<%@ page import="entity.dish.NonAlcoholDrink" %>
+<%@ page import="entity.dish.*" %>
+<%@ page import="entity.dish.NonAlcoholDrink" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     MenuDao menuDao = new MenuDao();
-    List<Dish> menu = menuDao.selectAllMenu();
-
-    List<Appetizer> appetizers = new ArrayList<>();
-    List<Soup> soupList = new ArrayList<>();
-    List<MainDish> mains = new ArrayList<>();
-    List<Dessert> desserts = new ArrayList<>();
-    List<NonAlcoholDrink> nonAlcoholDrinks = new ArrayList<>();
-    List<AlcoholDrink> alcoholDrinks = new ArrayList<>();
-
-    for (Dish dish : menu) {
-        if (dish instanceof Appetizer) {
-            appetizers.add((Appetizer) dish);
-        } else if (dish instanceof Soup) {
-            soupList.add((Soup) dish);
-        } else if (dish instanceof MainDish) {
-            mains.add((MainDish) dish);
-        } else if (dish instanceof Dessert) {
-            desserts.add((Dessert) dish);
-        } else if (dish instanceof NonAlcoholDrink) {
-            nonAlcoholDrinks.add((NonAlcoholDrink) dish);
-        } else if (dish instanceof AlcoholDrink) {
-            alcoholDrinks.add((AlcoholDrink) dish);
-        }
-
-    }
+    List<Dish> menu = menuDao.getMenu();
 %>
 <html>
 <head>
@@ -70,10 +46,14 @@
         <div align="middle">
             <h4>APPETIZER</h4>
             <br>
-            <% for (Appetizer appetizer : appetizers) {
-                out.print("<p>" + appetizer.getName().toUpperCase() + "</p>");
-                out.print("<p>" + appetizer.getCuisine().toLowerCase() + " cuisine" + "</p>");
-            } %>
+            <%
+                for (Dish appetizerDish : menu) {
+                    if (appetizerDish instanceof Appetizer) {
+                        out.print("<p>" + ((Appetizer) appetizerDish).getName().toUpperCase() + "</p>");
+                        out.print("<p>" + ((Appetizer) appetizerDish).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    }
+                }
+            %>
             <br>
         </div>
     </div>
@@ -81,10 +61,14 @@
         <div align="middle">
             <h4>FIRST COURSE</h4>
             <br>
-            <% for (Soup soup : soupList) {
-                out.print("<p>" + soup.getName().toUpperCase() + "</p>");
-                out.print("<p>" + soup.getCuisine().toLowerCase() + " cuisine" + "</p>");
-            } %>
+            <%
+                for (Dish soupDish : menu) {
+                    if (soupDish instanceof Soup) {
+                        out.print("<p>" + ((Soup) soupDish).getName().toUpperCase() + "</p>");
+                        out.print("<p>" + ((Soup) soupDish).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    }
+                }
+            %>
             <br>
         </div>
     </div>
@@ -92,10 +76,14 @@
         <div align="middle">
             <h4>MAIN COURSE</h4>
             <br>
-            <% for (MainDish mainDish : mains) {
-                out.print("<p>" + mainDish.getName().toUpperCase() + "</p>");
-                out.print("<p>" + mainDish.getCuisine().toLowerCase() + " cuisine" + "</p>");
-            } %>
+            <%
+                for (Dish mainDish : menu) {
+                    if (mainDish instanceof MainDish) {
+                        out.print("<p>" + ((MainDish) mainDish).getName().toUpperCase() + "</p>");
+                        out.print("<p>" + ((MainDish) mainDish).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    }
+                }
+            %>
             <br>
         </div>
     </div>
@@ -103,32 +91,44 @@
         <div align="middle">
             <h4>DESSERT</h4>
             <br>
-            <% for (Dessert dessert : desserts) {
-                out.print("<p>" + dessert.getName().toUpperCase() + "</p>");
-                out.print("<p>" + dessert.getCuisine().toLowerCase() + " cuisine" + "</p>");
-            } %>
+            <%
+                for (Dish dessert : menu) {
+                    if (dessert instanceof Dessert) {
+                        out.print("<p>" + ((Dessert) dessert).getName().toUpperCase() + "</p>");
+                        out.print("<p>" + ((Dessert) dessert).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    }
+                }
+            %>
             <br>
         </div>
     </div>
     <div align="middle">
         <div align="middle">
-            <h4>DRINKS</h4>
+            <h4>NON-ALCOHOL DRINK</h4>
             <br>
-            <% for (NonAlcoholDrink nonAlcoholDrink : nonAlcoholDrinks) {
-                out.print("<p>" + nonAlcoholDrink.getName().toUpperCase() + "</p>");
-                out.print("<p>" + nonAlcoholDrink.getCuisine().toLowerCase() + " cuisine" + "</p>");
-            } %>
+            <%
+                for (Dish nonAlcoholDrink : menu) {
+                    if (nonAlcoholDrink instanceof NonAlcoholDrink) {
+                        out.print("<p>" + ((NonAlcoholDrink) nonAlcoholDrink).getName().toUpperCase() + "</p>");
+                        out.print("<p>" + ((NonAlcoholDrink) nonAlcoholDrink).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    }
+                }
+            %>
             <br>
         </div>
     </div>
     <div align="middle">
         <div align="middle">
-            <h4>ALCOHOL DRINKS</h4>
+            <h4>ALCOHOL DRINK</h4>
             <br>
-            <% for (AlcoholDrink alcoholDrink : alcoholDrinks) {
-                out.print("<p>" + alcoholDrink.getName().toUpperCase() + "</p>");
-                out.print("<p>" + alcoholDrink.getCuisine().toLowerCase() + " cuisine" + "</p>");
-            } %>
+            <%
+                for (Dish alcoholDrink : menu) {
+                    if (alcoholDrink instanceof AlcoholDrink) {
+                        out.print("<p>" + ((AlcoholDrink) alcoholDrink).getName().toUpperCase() + "</p>");
+                        out.print("<p>" + ((AlcoholDrink) alcoholDrink).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    }
+                }
+            %>
             <br>
         </div>
     </div>

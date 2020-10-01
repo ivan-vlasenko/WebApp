@@ -5,7 +5,6 @@ import entity.user.User;
 import java.sql.*;
 
 
-import static model.DaoUtils.getConnection;
 
 public class UserDao {
 
@@ -14,7 +13,7 @@ public class UserDao {
         PreparedStatement statement = null;
         int status = 0;
         try {
-            conn = getConnection();
+            conn = DaoUtils.getConnection();
             conn.setAutoCommit(false);
 
             statement = conn.prepareStatement(
@@ -39,10 +38,10 @@ public class UserDao {
         return status;
     }
 
-    public static boolean loginDao(String log, String pass, String email) {
+    public static boolean login(String log, String pass, String email) {
         Connection con;
         try {
-            con = getConnection();
+            con = DaoUtils.getConnection();
 
             Statement st = con.createStatement();
 
@@ -75,7 +74,7 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-            conn = getConnection();
+            conn = DaoUtils.getConnection();
             conn.setAutoCommit(false);
 
             statement = conn.prepareStatement(

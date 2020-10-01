@@ -1,26 +1,22 @@
 package model;
 
-import entity.dishes.*;
-import entity.drinks.AlcoholDrink;
-import entity.drinks.NonAlcoholDrink;
+import entity.dish.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static model.DaoUtils.getConnection;
-
 
 public class MenuDao {
 
-    public List<Dish> selectAllMenu() {
+    public List<Dish> getMenu() {
         List<Dish> dishes = new ArrayList<>();
 
         Connection conn = null;
         Statement statement = null;
         ResultSet resultSet = null;
         try {
-            conn = getConnection();
+            conn = DaoUtils.getConnection();
             conn.setAutoCommit(false);
 
             statement = conn.createStatement();
@@ -36,23 +32,7 @@ public class MenuDao {
                 String cuisine = resultSet.getString("cuisine");
                 String category = resultSet.getString("category");
 
-                Dish dish = DishFactory.createDish(category);
-
-
-                /*if (category.equalsIgnoreCase("Main")) {
-                    dishes.add(new MainDish(name, cuisine, category));
-                } else if (category.equalsIgnoreCase("dessert")) {
-                    dishes.add(new Dessert(name, cuisine, category));
-                } else if (category.equalsIgnoreCase("appetizer")) {
-                    dishes.add(new Appetizer(name, cuisine, category));
-                } else if (category.equalsIgnoreCase("drink")) {
-                    dishes.add(new NonAlcoholDrink(name, cuisine, category));
-                } else if (category.equalsIgnoreCase("alcohol drink")) {
-                    dishes.add(new AlcoholDrink(name, cuisine, category));
-                } else if (category.equalsIgnoreCase("soup")) {
-                    dishes.add(new Soup(name, cuisine, category));
-                }*/
-
+                dishes.add(DishFactory.createDish(name, cuisine, category));
             }
 
             conn.commit();

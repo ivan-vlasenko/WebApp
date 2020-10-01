@@ -1,11 +1,11 @@
-package entity.dishes;
+package entity.dish;
 
-public abstract class DishAbstractClass<T extends DishAbstractClass<T>> {
+public abstract class DishAbstractClassTest<T extends DishAbstractClassTest<T>> {
     private String name;
     private String cuisine;
     private String category;
 
-    private DishAbstractClass() {}
+    //private DishAbstractClass() {}
 
     public String getName() {
         return name;
@@ -19,25 +19,25 @@ public abstract class DishAbstractClass<T extends DishAbstractClass<T>> {
 
     public abstract class BaseBuilder<B extends BaseBuilder<B>>{
 
-        private BaseBuilder() {}
+        //private BaseBuilder() {}
 
         public BaseBuilder<B> setCuisine(String cuisine) {
-            DishAbstractClass.this.cuisine = cuisine;
+            DishAbstractClassTest.this.cuisine = cuisine;
 
             return this;
         }
         public BaseBuilder<B> setName(String name) {
-            DishAbstractClass.this.name = name;
+            DishAbstractClassTest.this.name = name;
 
             return this;
         }
         public BaseBuilder<B> setCategory(String category) {
-            DishAbstractClass.this.category = category;
+            DishAbstractClassTest.this.category = category;
 
             return this;
         }
-        public DishAbstractClass<T> build() {
-            return DishAbstractClass.this;
+        public DishAbstractClassTest<T> build() {
+            return DishAbstractClassTest.this;
         }
     }
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import model.UserDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static model.UserDao.loginDao;
 
 @WebServlet(urlPatterns = "/sign-in")
 public class SignInServlet extends HttpServlet {
@@ -46,7 +47,7 @@ public class SignInServlet extends HttpServlet {
                 session.setAttribute("empty", empty);
                 response.sendRedirect("sign-page.jsp");
             } else {
-                if (loginDao(login, password, email)) {
+                if (UserDao.login(login, password, email)) {
                     session.setAttribute("log", login);
                     session.setAttribute("pass", password);
                     session.setAttribute("email", email);
