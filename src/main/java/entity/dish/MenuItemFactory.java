@@ -2,7 +2,7 @@ package entity.dish;
 
 public class MenuItemFactory {
 
-    public static MenuItem createDish(String name, String cuisine, String category) {
+    public static MenuItem createMenuItem(String name, String cuisine, String category) {
 
         if (category == null || category.isEmpty())
             return null;

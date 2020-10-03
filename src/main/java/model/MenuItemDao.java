@@ -32,7 +32,7 @@ public class MenuItemDao {
                 String cuisine = resultSet.getString("cuisine");
                 String category = resultSet.getString("category");
 
-                menuItems.add(MenuItemFactory.createDish(name, cuisine, category));
+                menuItems.add(MenuItemFactory.createMenuItem(name, cuisine, category));
             }
 
             conn.commit();

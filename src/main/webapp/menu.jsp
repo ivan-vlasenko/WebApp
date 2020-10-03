@@ -1,7 +1,5 @@
 <%@ page import="model.MenuItemDao" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="entity.*" %>
 <%@ page import="entity.dish.AlcoholDrink" %>
 <%@ page import="entity.dish.NonAlcoholDrink" %>
 <%@ page import="entity.dish.*" %>
