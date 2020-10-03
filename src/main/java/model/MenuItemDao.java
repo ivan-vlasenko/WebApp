@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MenuDao {
+public class MenuItemDao {
 
-    public List<Dish> getMenu() {
-        List<Dish> dishes = new ArrayList<>();
+    public List<MenuItem> getMenuItems() {
+        List<MenuItem> menuItems = new ArrayList<>();
 
         Connection conn = null;
         Statement statement = null;
@@ -32,7 +32,7 @@ public class MenuDao {
                 String cuisine = resultSet.getString("cuisine");
                 String category = resultSet.getString("category");
 
-                dishes.add(DishFactory.createDish(name, cuisine, category));
+                menuItems.add(DishFactory.createDish(name, cuisine, category));
             }
 
             conn.commit();
@@ -45,6 +45,6 @@ public class MenuDao {
         } finally {
             DaoUtils.closeQuietly(resultSet, statement, conn);
         }
-        return dishes;
+        return menuItems;
     }
 }

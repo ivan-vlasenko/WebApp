@@ -1,10 +1,11 @@
 package entity.dish;
 
-public class Soup extends AbstractMenuItem<Soup> {
-    private Soup() {}
+
+public class MainMeal extends AbstractMenuItem<MainMeal> {
+    private MainMeal() {}
 
     public static MenuBuilder newBuilder() {
-        return new Soup().new MenuBuilder();
+        return new MainMeal().new MenuBuilder();
     }
 
     public class MenuBuilder extends AbstractMenuBuilder<MenuBuilder> {
