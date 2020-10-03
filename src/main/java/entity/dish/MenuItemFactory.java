@@ -1,6 +1,6 @@
 package entity.dish;
 
-public class DishFactory {
+public class MenuItemFactory {
 
     public static MenuItem createDish(String name, String cuisine, String category) {
 
