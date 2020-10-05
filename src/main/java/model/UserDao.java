@@ -8,10 +8,10 @@ import java.sql.*;
 
 public class UserDao {
 
-    public static int save(User user) {
+    public static boolean saveUser(User user) {
         Connection conn = null;
         PreparedStatement statement = null;
-        int status = 0;
+        boolean status = false;
         try {
             conn = DaoUtils.getConnection();
             conn.setAutoCommit(false);
@@ -22,7 +22,7 @@ public class UserDao {
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
 
-            status = statement.executeUpdate();
+            status = statement.executeUpdate() > 0;
 
             conn.commit();
         } catch (SQLException ex) {
@@ -66,6 +66,38 @@ public class UserDao {
         return false;
     }
 
+    public static boolean deleteUser(User user) {
+        Connection conn = null;
+        PreparedStatement statement = null;
+        boolean status = false;
+        try {
+            conn = DaoUtils.getConnection();
+            conn.setAutoCommit(false);
+
+            statement = conn.prepareStatement(
+                    "delete from users where login=?"
+                            +"and email=?"
+                            +"and password=?");
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getPassword());
+
+            status = statement.executeUpdate() > 0;
+
+            conn.commit();
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+
+            DaoUtils.rollbackQuietly(conn);
+        } finally {
+            DaoUtils.closeQuietly(statement, conn);
+        }
+
+        return status;
+    }
+
     public User getUserByLogin(String log) {
         User user = null;
 
@@ -78,7 +110,7 @@ public class UserDao {
             conn.setAutoCommit(false);
 
             statement = conn.prepareStatement(
-                    "select from users (login, email, password) where (login = ?)");
+                    "update users set login ='?'");
             statement.setString(1, log);
 
             resultSet = statement.executeQuery();

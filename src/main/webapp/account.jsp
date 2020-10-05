@@ -37,19 +37,30 @@
                 <form action="account" method="post">
                 <tr>
                     <td align="middle">Login:</td>
-                    <td align="middle" contenteditable="true"><%=log%></td>
-                    <td align="middle"><input type="submit" value="Change" formmethod="post"></td>
+                    <%--<td align="middle">
+                        <input type="text" name="login"
+                               value="<%=log%>"
+                        />
+                    </td>--%>
+                    <td align="middle"><%=log%></td>
                 </tr>
                 <tr>
                     <td align="middle">Password:</td>
-                    <td align="middle" contenteditable="true"><%=pass%></td>
-                    <td align="middle"><input type="submit" value="Change" formmethod="post"></td>
+                    <td align="middle"><%=pass%></td>
+                    <%--<td align="middle"><input type="submit" value="Change" formmethod="post"></td>--%>
                 </tr>
                 <tr>
                     <td align="middle">Email:</td>
-                    <td align="middle" contenteditable="true"><%=email%></td>
-                    <td align="middle"><input type="submit" value="Change" formmethod="post"></td>
+                    <td align="middle"><%=email%></td>
+                    <%--<td align="middle"><input type="submit" value="Change" formmethod="post"></td>--%>
                 </tr>
+                    <tr>
+                        <td></td>
+                        <td align="middle"><a href="/edit?login=<%out.print(log);%>
+                                                    &password=<%out.print(pass);%>
+                                                    &email=<%out.print(email);%>">Edit</a></td>
+                    </tr>
+                    <%--<input type="submit" value="Save">--%>
                 </form>
                 <tr>
                     <br>
@@ -57,6 +68,11 @@
                     <td align="middle">
                         <form action="logout" method="get">
                             <input type="submit" value="Logout">
+                        </form>
+                    </td>
+                    <td align="middle">
+                        <form action="delete" method="get">
+                            <input type="submit" value="Delete Account">
                         </form>
                     </td>
                 </tr>

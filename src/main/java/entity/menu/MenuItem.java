@@ -22,30 +22,30 @@ public class MenuItem {
         return category;
     }
 
-    public static MenuItemBuilderImpl newBuilder() {
-        return new MenuItem().new MenuItemBuilderImpl();
+    public static MenuBuilderImpl newBuilder() {
+        return new MenuItem().new MenuBuilderImpl();
     }
 
-    public class MenuItemBuilderImpl implements MenuItemBuilder {
+    public class MenuBuilderImpl implements MenuBuilder {
 
-        private MenuItemBuilderImpl() {}
+        private MenuBuilderImpl() {}
 
         @Override
-        public MenuItemBuilderImpl setName(String name) {
+        public MenuBuilder setName(String name) {
             MenuItem.this.name = name;
 
             return this;
         }
 
         @Override
-        public MenuItemBuilderImpl setCategory(MenuItemCategory category) {
+        public MenuBuilder setCategory(MenuItemCategory category) {
             MenuItem.this.category = category;
 
             return this;
         }
 
         @Override
-        public MenuItemBuilderImpl fromCuisine(String cuisine) {
+        public MenuBuilder fromCuisine(String cuisine) {
             MenuItem.this.cuisine = cuisine;
 
             return this;

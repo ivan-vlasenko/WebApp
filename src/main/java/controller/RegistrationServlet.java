@@ -41,7 +41,7 @@ public class RegistrationServlet extends HttpServlet {
 
         AtomicInteger tryCount = (AtomicInteger) session.getAttribute("regCount");
         int attemptCount = tryCount.getAndDecrement();
-        int status = 0;
+        boolean status;
 
         if (attemptCount > 0) {
             if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
@@ -50,8 +50,8 @@ public class RegistrationServlet extends HttpServlet {
                 response.sendRedirect("registration-page.jsp");
             } else {
                 User user = new User(login, password, email);
-                status = UserDao.save(user);
-                if (status > 0) {
+                status = UserDao.saveUser(user);
+                if (status) {
                     session.setAttribute("log", login);
                     session.setAttribute("pass", password);
                     session.setAttribute("email", email);

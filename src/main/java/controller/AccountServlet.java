@@ -15,6 +15,10 @@ import java.io.IOException;
 public class AccountServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("login") != null) {
+            doPost(request, response);
+        }
+
         HttpSession session = request.getSession();
         if (session.getAttribute("log") == null) {
             response.sendRedirect("sign-page.jsp");
@@ -26,6 +30,6 @@ public class AccountServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String login = req.getParameter("login");
     }
 }
