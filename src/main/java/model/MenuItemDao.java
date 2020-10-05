@@ -1,6 +1,6 @@
 package model;
 
-import entity.dish.*;
+import entity.menu.*;
 
 import java.sql.*;
 import java.util.ArrayList;

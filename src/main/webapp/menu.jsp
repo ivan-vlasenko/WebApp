@@ -1,9 +1,6 @@
 <%@ page import="model.MenuItemDao" %>
 <%@ page import="java.util.List" %>
-<%@ page import="entity.dish.AlcoholDrink" %>
-<%@ page import="entity.dish.NonAlcoholDrink" %>
-<%@ page import="entity.dish.*" %>
-<%@ page import="entity.dish.NonAlcoholDrink" %>
+<%@ page import="entity.menu.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     MenuItemDao menuItemDao = new MenuItemDao();
@@ -46,9 +43,9 @@
             <br>
             <%
                 for (MenuItem appetizer : menuItems) {
-                    if (appetizer instanceof Appetizer) {
-                        out.print("<p>" + ((Appetizer) appetizer).getName().toUpperCase() + "</p>");
-                        out.print("<p>" + ((Appetizer) appetizer).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    if (appetizer.getCategory().equals(MenuItemCategory.APPETIZER)) {
+                        out.print("<p>" + appetizer.getName().toUpperCase() + "</p>");
+                        out.print("<p>" + appetizer.getCuisine().toLowerCase() + " cuisine" + "</p>");
                     }
                 }
             %>
@@ -61,9 +58,9 @@
             <br>
             <%
                 for (MenuItem soup : menuItems) {
-                    if (soup instanceof Soup) {
-                        out.print("<p>" + ((Soup) soup).getName().toUpperCase() + "</p>");
-                        out.print("<p>" + ((Soup) soup).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    if (soup.getCategory().equals(MenuItemCategory.SOUP)) {
+                        out.print("<p>" + soup.getName().toUpperCase() + "</p>");
+                        out.print("<p>" + soup.getCuisine().toLowerCase() + " cuisine" + "</p>");
                     }
                 }
             %>
@@ -76,9 +73,9 @@
             <br>
             <%
                 for (MenuItem mainMeal : menuItems) {
-                    if (mainMeal instanceof MainMeal) {
-                        out.print("<p>" + ((MainMeal) mainMeal).getName().toUpperCase() + "</p>");
-                        out.print("<p>" + ((MainMeal) mainMeal).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    if (mainMeal.getCategory().equals(MenuItemCategory.MAIN_MEAL)) {
+                        out.print("<p>" + mainMeal.getName().toUpperCase() + "</p>");
+                        out.print("<p>" + mainMeal.getCuisine().toLowerCase() + " cuisine" + "</p>");
                     }
                 }
             %>
@@ -91,9 +88,9 @@
             <br>
             <%
                 for (MenuItem dessert : menuItems) {
-                    if (dessert instanceof Dessert) {
-                        out.print("<p>" + ((Dessert) dessert).getName().toUpperCase() + "</p>");
-                        out.print("<p>" + ((Dessert) dessert).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    if (dessert.getCategory().equals(MenuItemCategory.DESSERT)) {
+                        out.print("<p>" + dessert.getName().toUpperCase() + "</p>");
+                        out.print("<p>" + dessert.getCuisine().toLowerCase() + " cuisine" + "</p>");
                     }
                 }
             %>
@@ -105,10 +102,10 @@
             <h4>NON-ALCOHOL DRINK</h4>
             <br>
             <%
-                for (MenuItem nonAlcoholDrink : menuItems) {
-                    if (nonAlcoholDrink instanceof NonAlcoholDrink) {
-                        out.print("<p>" + ((NonAlcoholDrink) nonAlcoholDrink).getName().toUpperCase() + "</p>");
-                        out.print("<p>" + ((NonAlcoholDrink) nonAlcoholDrink).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                for (MenuItem drink : menuItems) {
+                    if (drink.getCategory().equals(MenuItemCategory.NON_ALCOHOL_DRINK)) {
+                        out.print("<p>" + drink.getName().toUpperCase() + "</p>");
+                        out.print("<p>" + drink.getCuisine().toLowerCase() + " cuisine" + "</p>");
                     }
                 }
             %>
@@ -121,9 +118,9 @@
             <br>
             <%
                 for (MenuItem alcoholDrink : menuItems) {
-                    if (alcoholDrink instanceof AlcoholDrink) {
-                        out.print("<p>" + ((AlcoholDrink) alcoholDrink).getName().toUpperCase() + "</p>");
-                        out.print("<p>" + ((AlcoholDrink) alcoholDrink).getCuisine().toLowerCase() + " cuisine" + "</p>");
+                    if (alcoholDrink.getCategory().equals(MenuItemCategory.ALCOHOL_DRINK)) {
+                        out.print("<p>" + alcoholDrink.getName().toUpperCase() + "</p>");
+                        out.print("<p>" + alcoholDrink.getCuisine().toLowerCase() + " cuisine" + "</p>");
                     }
                 }
             %>

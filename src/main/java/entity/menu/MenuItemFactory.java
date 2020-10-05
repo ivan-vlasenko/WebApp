@@ -1,4 +1,4 @@
-package entity.dish;
+package entity.menu;
 
 public class MenuItemFactory {
 
@@ -8,42 +8,40 @@ public class MenuItemFactory {
             return null;
 
         if ("main".equalsIgnoreCase(category)) {
-            return MainMeal.newBuilder()
+            return MenuItem.newBuilder()
+                    .setCategory(MenuItemCategory.MAIN_MEAL)
                     .setName(name)
                     .fromCuisine(cuisine)
-                    .fromCategory(category)
                     .build();
         } else if ("soup".equalsIgnoreCase(category)) {
-            return Soup.newBuilder()
+            return MenuItem.newBuilder()
+                    .setCategory(MenuItemCategory.SOUP)
                     .setName(name)
                     .fromCuisine(cuisine)
-                    .fromCategory(category)
                     .build();
         } else if ("appetizer".equalsIgnoreCase(category)) {
-            return Appetizer.newBuilder()
+            return MenuItem.newBuilder()
+                    .setCategory(MenuItemCategory.APPETIZER)
                     .setName(name)
                     .fromCuisine(cuisine)
-                    .fromCategory(category)
                     .build();
         } else if ("dessert".equalsIgnoreCase(category)) {
-            return Dessert.newBuilder()
+            return MenuItem.newBuilder()
+                    .setCategory(MenuItemCategory.DESSERT)
                     .setName(name)
                     .fromCuisine(cuisine)
-                    .fromCategory(category)
                     .build();
         } else if ("drink".equalsIgnoreCase(category)) {
-            return NonAlcoholDrink.newBuilder()
+            return MenuItem.newBuilder()
+                    .setCategory(MenuItemCategory.NON_ALCOHOL_DRINK)
                     .setName(name)
                     .fromCuisine(cuisine)
-                    .fromCategory(category)
-                    .isAlcoholic(false)
                     .build();
         } else if ("alcohol drink".equalsIgnoreCase(category)) {
-            return AlcoholDrink.newBuilder()
+            return MenuItem.newBuilder()
+                    .setCategory(MenuItemCategory.ALCOHOL_DRINK)
                     .setName(name)
                     .fromCuisine(cuisine)
-                    .fromCategory(category)
-                    .isAlcoholic(true)
                     .build();
         }
 
