@@ -111,7 +111,7 @@ public class UserDao {
 
             statement = conn.prepareStatement(
                     "update users set login ='?'");
-            statement.setString(1, log);
+            //statement.setString(1, log);
 
             resultSet = statement.executeQuery();
 

@@ -6,6 +6,17 @@ public class User {
     private String login;
     private String password;
     private String email;
+    int id;
+
+    public User() {
+    }
+
+    public User(String login, String password, String email, int id) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.id = id;
+    }
 
     public User(String login, String password, String email) {
         this.login = login;
@@ -13,7 +24,13 @@ public class User {
         this.email = email;
     }
 
-    public User() {}
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getLogin() {
         return login;
@@ -44,13 +61,24 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(login, user.login) &&
+        return id == user.id &&
+                Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, password, email);
+        return Objects.hash(login, password, email, id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

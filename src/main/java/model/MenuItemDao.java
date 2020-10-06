@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public class MenuItemDao {
+    private static final String SELECT_MENU_ITEMS = "SELECT name, cuisine, category FROM menu";
 
     public List<MenuItem> getMenuItems() {
         List<MenuItem> menuItems = new ArrayList<>();
@@ -21,9 +22,9 @@ public class MenuItemDao {
 
             statement = conn.createStatement();
 
-            resultSet = statement.executeQuery("SELECT name, cuisine, category FROM menu");
+            resultSet = statement.executeQuery(SELECT_MENU_ITEMS);
 
-            if (statement.execute("SELECT name, cuisine, category FROM menu")) {
+            if (statement.execute(SELECT_MENU_ITEMS)) {
                 resultSet = statement.getResultSet();
             }
 
