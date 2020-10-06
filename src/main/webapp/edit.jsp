@@ -22,6 +22,9 @@
         <li><a href="sign-in">SIGN IN</a></li>
         <li><a href="register">REGISTER</a></li>
         <li><a href="account">ACCOUNT</a></li>
+        <li><a href="/edit?login=<%out.print(currentUser.getLogin());%>
+                          &password=<%out.print(currentUser.getPassword());%>
+                          &email=<%out.print(currentUser.getEmail());%>">EDIT</a></li>
     </ul>
 </nav>
 <div align="middle">
@@ -59,13 +62,8 @@
             <td align="middle">
                     <input type="submit" value="Save">
             </td>
-        </form>
-            <td align="middle">
-                <form action="delete" method="get">
-                    <input type="submit" value="Delete Account">
-                </form>
-            </td>
         </tr>
+        </form>
     </table>
 </div>
 </body>
