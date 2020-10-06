@@ -24,7 +24,6 @@ public class RegistrationServlet extends HttpServlet {
         if (session.getAttribute("log") == null) {
             response.sendRedirect("registration-page.jsp");
         } else {
-            session.setAttribute("regCount", null);
             response.sendRedirect("account.jsp");
         }
 
@@ -39,33 +38,25 @@ public class RegistrationServlet extends HttpServlet {
         session.setAttribute("emptyRegMessage", null);
         session.setAttribute("alreadyExistMessage", null);
 
-        AtomicInteger tryCount = (AtomicInteger) session.getAttribute("regCount");
-        int attemptCount = tryCount.getAndDecrement();
         boolean status;
 
-        if (attemptCount > 0) {
-            if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
-                String emptyRegMessage = "All fields must be filled! " + attemptCount + " attempts left!";
-                session.setAttribute("emptyRegMessage", emptyRegMessage);
-                response.sendRedirect("registration-page.jsp");
-            } else {
-                User user = new User(login, password, email);
-                status = UserDao.saveUser(user);
-                if (status) {
-                    session.setAttribute("log", login);
-                    session.setAttribute("pass", password);
-                    session.setAttribute("email", email);
-                    session.setAttribute("regCount", new AtomicInteger(5));
-                    session.setAttribute("signCount", new AtomicInteger(5));
-                    response.sendRedirect("registration-done-page.jsp");
-                } else {
-                    String alreadyExistMessage = "Such login or email is already exist! " + attemptCount + " attempts left!";
-                    session.setAttribute("alreadyExistMessage", alreadyExistMessage);
-                    response.sendRedirect("registration-page.jsp");
-                }
-            }
+        if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
+            String emptyRegMessage = "All fields must be filled!";
+            session.setAttribute("emptyRegMessage", emptyRegMessage);
+            response.sendRedirect("registration-page.jsp");
         } else {
-            response.sendRedirect("attempts-left.jsp");
+            User user = new User(login, password, email);
+            status = UserDao.saveUser(user);
+            if (status) {
+                session.setAttribute("log", login);
+                session.setAttribute("pass", password);
+                session.setAttribute("email", email);
+                response.sendRedirect("registration-done-page.jsp");
+            } else {
+                String alreadyExistMessage = "Such login or email is already exist!";
+                session.setAttribute("alreadyExistMessage", alreadyExistMessage);
+                response.sendRedirect("registration-page.jsp");
+            }
         }
     }
 }

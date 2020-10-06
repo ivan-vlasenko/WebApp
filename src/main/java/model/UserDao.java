@@ -45,7 +45,7 @@ public class UserDao {
 
             Statement st = con.createStatement();
 
-            String query = "select user_id from users where login='" + log + "' " +
+            String query = "select id from users where login='" + log + "' " +
                     "and password='" + pass + "' " +
                     "and email='" + email + "'";
 

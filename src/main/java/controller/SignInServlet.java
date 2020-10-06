@@ -24,7 +24,6 @@ public class SignInServlet extends HttpServlet {
         if (session.getAttribute("log") == null) {
             response.sendRedirect("sign-page.jsp");
         } else {
-            session.setAttribute("signCount", null);
             response.sendRedirect("account.jsp");
         }
     }
@@ -38,30 +37,21 @@ public class SignInServlet extends HttpServlet {
         session.setAttribute("empty", null);
         session.setAttribute("wrong", null);
 
-        AtomicInteger tryCount = (AtomicInteger) session.getAttribute("signCount");
-        int attemptCount = tryCount.getAndDecrement();
-
-        if (attemptCount > 0) {
-            if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
-                String empty = "Login, password or email is empty! " + attemptCount + " attempts left!";
-                session.setAttribute("empty", empty);
-                response.sendRedirect("sign-page.jsp");
-            } else {
-                if (UserDao.login(login, password, email)) {
-                    session.setAttribute("log", login);
-                    session.setAttribute("pass", password);
-                    session.setAttribute("email", email);
-                    session.setAttribute("regCount", new AtomicInteger(5));
-                    session.setAttribute("signCount", new AtomicInteger(5));
-                    response.sendRedirect("index.jsp");
-                } else {
-                    String wrong = "Login or password is invalid! " + attemptCount + " attempts left!";
-                    session.setAttribute("wrong", wrong);
-                    response.sendRedirect("sign-page.jsp");
-                }
-            }
+        if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
+            String empty = "Login, password or email is empty!";
+            session.setAttribute("empty", empty);
+            response.sendRedirect("sign-page.jsp");
         } else {
-            response.sendRedirect("registration-page.jsp");
+            if (UserDao.login(login, password, email)) {
+                session.setAttribute("log", login);
+                session.setAttribute("pass", password);
+                session.setAttribute("email", email);
+                response.sendRedirect("index.jsp");
+            } else {
+                String wrong = "Login or password is invalid!";
+                session.setAttribute("wrong", wrong);
+                response.sendRedirect("sign-page.jsp");
+            }
         }
     }
 }
