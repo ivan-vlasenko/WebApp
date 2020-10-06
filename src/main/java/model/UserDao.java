@@ -98,29 +98,22 @@ public class UserDao {
         return status;
     }
 
-    public User getUserByLogin(String log) {
-        User user = null;
-
+    public static boolean updateUser(User currentUser, String newLogin, String newPass, String newEmail) {
         Connection conn = null;
         PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
+        boolean status = false;
         try {
             conn = DaoUtils.getConnection();
             conn.setAutoCommit(false);
 
             statement = conn.prepareStatement(
-                    "update users set login ='?'");
-            //statement.setString(1, log);
+                    "update users set login=?, password=?, email=? where login=?");
+            statement.setString(1, newLogin);
+            statement.setString(2, newPass);
+            statement.setString(3, newEmail);
+            statement.setString(4, currentUser.getLogin());
 
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String login = resultSet.getString(1);
-                String email = resultSet.getString(2);
-                String password = resultSet.getString(3);
-                user = new User(login, email, password);
-            }
+            status = statement.executeUpdate() > 0;
 
             conn.commit();
         } catch (SQLException ex) {
@@ -130,9 +123,9 @@ public class UserDao {
 
             DaoUtils.rollbackQuietly(conn);
         } finally {
-            DaoUtils.closeQuietly(resultSet, statement, conn);
+            DaoUtils.closeQuietly(statement, conn);
         }
 
-        return user;
+        return status;
     }
 }

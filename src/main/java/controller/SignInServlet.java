@@ -36,7 +36,7 @@ public class SignInServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
-        
+
         session.setAttribute("empty", null);
         session.setAttribute("invalid", null);
 

@@ -14,6 +14,7 @@
 <body>
 <%
     User currentUser = (User) session.getAttribute("user");
+    String editErrorMessage = (String) session.getAttribute("editError");
 %>
 <nav>
     <ul>
@@ -22,20 +23,19 @@
         <li><a href="sign-in">SIGN IN</a></li>
         <li><a href="register">REGISTER</a></li>
         <li><a href="account">ACCOUNT</a></li>
-        <li><a href="/edit?login=<%out.print(currentUser.getLogin());%>
-                          &password=<%out.print(currentUser.getPassword());%>
-                          &email=<%out.print(currentUser.getEmail());%>">EDIT</a></li>
+        <li><a href="edit">EDIT</a></li>
     </ul>
 </nav>
 <div align="middle">
     <h1>Welcome to your account, <%=currentUser.getLogin()%>!</h1>
     <p></p>
+    <h3><%if(editErrorMessage != null){out.print(editErrorMessage);}%></h3>
     <table>
         <form action="edit" method="post">
             <tr>
                 <td align="middle">Login:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="login"
+                    <input align="middle" type="text" name="newLogin"
                            value="<%=currentUser.getLogin()%>"
                     />
                 </td>
@@ -43,7 +43,7 @@
             <tr>
                 <td align="middle">Password:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="password"
+                    <input align="middle" type="text" name="newPassword"
                            value="<%=currentUser.getPassword()%>"
                     />
                 </td>
@@ -51,7 +51,7 @@
             <tr>
                 <td align="middle">Email:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="email"
+                    <input align="middle" type="text" name="newEmail"
                            value="<%=currentUser.getEmail()%>"
                     />
                 </td>
