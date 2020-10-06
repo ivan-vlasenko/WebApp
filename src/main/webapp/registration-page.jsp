@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.user.User" %><%--
   Created by IntelliJ IDEA.
   User: midicq
   Date: 9/11/2020
@@ -13,16 +13,10 @@
 </head>
 <body>
 <%
-    String log = (String) session.getAttribute("log");
-    String pass = (String) session.getAttribute("pass");
-    String email = (String) session.getAttribute("email");
+    User currentUser = (User) session.getAttribute("user");
 
-    String alreadyExistMessage = (String) session.getAttribute("alreadyExistMessage");
-    String emptyRegMessage = (String) session.getAttribute("emptyRegMessage");
-
-    out.println(log);
-    out.println(pass);
-    out.println(email);
+    String existErrorMessage = (String) session.getAttribute("existError");
+    String emptyErrorMessage = (String) session.getAttribute("emptyError");
 %>
 <nav>
     <ul>
@@ -54,8 +48,8 @@
                 <td><br></td>
                 <td align="right">
                     <%
-                        if (alreadyExistMessage != null) out.print(alreadyExistMessage);
-                        if (emptyRegMessage != null) out.print(emptyRegMessage);
+                        if (existErrorMessage != null) out.print(existErrorMessage);
+                        if (emptyErrorMessage != null) out.print(emptyErrorMessage);
                     %>
                 </td>
             </tr>

@@ -13,13 +13,7 @@
 </head>
 <body>
 <%
-    String log = (String) session.getAttribute("log");
-    String pass = (String) session.getAttribute("pass");
-    String email = (String) session.getAttribute("email");
-
-    out.println(log);
-    out.println(pass);
-    out.println(email);
+    User currentUser = (User) session.getAttribute("user");
 %>
 <nav>
     <ul>
@@ -31,7 +25,7 @@
     </ul>
 </nav>
 <div align="middle">
-    <h1>Welcome to your account, <%=log%>!</h1>
+    <h1>Welcome to your account, <%=currentUser.getLogin()%>!</h1>
     <p></p>
     <table>
         <form action="edit" method="post">
@@ -39,7 +33,7 @@
                 <td align="middle">Login:</td>
                 <td align="middle">
                     <input align="middle" type="text" name="login"
-                           value="<%=log%>"
+                           value="<%=currentUser.getLogin()%>"
                     />
                 </td>
             </tr>
@@ -47,7 +41,7 @@
                 <td align="middle">Password:</td>
                 <td align="middle">
                     <input align="middle" type="text" name="password"
-                           value="<%=pass%>"
+                           value="<%=currentUser.getPassword()%>"
                     />
                 </td>
             </tr>
@@ -55,7 +49,7 @@
                 <td align="middle">Email:</td>
                 <td align="middle">
                     <input align="middle" type="text" name="email"
-                           value="<%=email%>"
+                           value="<%=currentUser.getEmail()%>"
                     />
                 </td>
             </tr>

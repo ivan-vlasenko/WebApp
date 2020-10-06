@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.user.User" %><%--
   Created by IntelliJ IDEA.
   User: midicq
   Date: 9/11/2020
@@ -13,16 +13,10 @@
 </head>
 <body>
 <%
-    String log = (String) session.getAttribute("log");
-    String pass = (String) session.getAttribute("pass");
-    String email = (String) session.getAttribute("email");
+    User currentUser = (User) session.getAttribute("user");
 
-    String empty = (String) session.getAttribute("empty");
-    String wrong = (String) session.getAttribute("wrong");
-
-    out.println(log);
-    out.println(pass);
-    out.println(email);
+    String emptyErrorMessage = (String) session.getAttribute("empty");
+    String invalidErrorMessage = (String) session.getAttribute("invalid");
 %>
 <nav>
     <ul>
@@ -55,8 +49,8 @@
                 <td><br></td>
                 <td align="right">
                     <%
-                    if (empty != null) out.print(empty);
-                    if (wrong != null) out.print(wrong);
+                    if (emptyErrorMessage != null) out.print(emptyErrorMessage);
+                    if (invalidErrorMessage != null) out.print(invalidErrorMessage);
                     %>
                 </td>
             </tr>

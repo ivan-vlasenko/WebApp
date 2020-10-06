@@ -1,6 +1,7 @@
 <%@ page import="model.MenuItemDao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="entity.menu.*" %>
+<%@ page import="entity.user.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     MenuItemDao menuItemDao = new MenuItemDao();
@@ -13,13 +14,7 @@
 </head>
 <body>
 <%
-    String log = (String) session.getAttribute("log");
-    String pass = (String) session.getAttribute("pass");
-    String email = (String) session.getAttribute("email");
-
-    out.println(log);
-    out.println(pass);
-    out.println(email);
+    User currentUser = (User) session.getAttribute("user");
 %>
 <nav>
     <ul>

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="entity.user.User" %><%--
   Created by IntelliJ IDEA.
   User: midicq
   Date: 9/12/2020
@@ -13,13 +13,7 @@
 </head>
 <body>
 <%
-    String log = (String) session.getAttribute("log");
-    String pass = (String) session.getAttribute("pass");
-    String email = (String) session.getAttribute("email");
-
-    out.println(log);
-    out.println(pass);
-    out.println(email);
+    User currentUser = (User) session.getAttribute("user");
 %>
 <nav>
     <ul>
@@ -31,7 +25,7 @@
     </ul>
 </nav>
 <div align="middle">
-    <h1>Register successful, <%=log%>!</h1>
+    <h1>Register successful, <%=currentUser.getLogin()%>!</h1>
 </div>
 </body>
 </html>

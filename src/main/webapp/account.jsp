@@ -13,13 +13,7 @@
 </head>
 <body>
 <%
-    String log = (String) session.getAttribute("log");
-    String pass = (String) session.getAttribute("pass");
-    String email = (String) session.getAttribute("email");
-
-    out.println(log);
-    out.println(pass);
-    out.println(email);
+    User currentUser = (User) session.getAttribute("user");
 %>
 <nav>
     <ul>
@@ -31,36 +25,28 @@
     </ul>
 </nav>
     <div align="middle">
-        <h1>Welcome to your account, <%=log%>!</h1>
+        <h1>Welcome to your account, <%=currentUser.getLogin()%>!</h1>
         <p></p>
             <table>
                 <form action="account" method="post">
                 <tr>
                     <td align="middle">Login:</td>
-                    <%--<td align="middle">
-                        <input type="text" name="login"
-                               value="<%=log%>"
-                        />
-                    </td>--%>
-                    <td align="middle"><%=log%></td>
+                    <td align="middle"><%=currentUser.getLogin()%></td>
                 </tr>
                 <tr>
                     <td align="middle">Password:</td>
-                    <td align="middle"><%=pass%></td>
-                    <%--<td align="middle"><input type="submit" value="Change" formmethod="post"></td>--%>
+                    <td align="middle"><%=currentUser.getPassword()%></td>
                 </tr>
                 <tr>
                     <td align="middle">Email:</td>
-                    <td align="middle"><%=email%></td>
-                    <%--<td align="middle"><input type="submit" value="Change" formmethod="post"></td>--%>
+                    <td align="middle"><%=currentUser.getEmail()%></td>
                 </tr>
                     <tr>
                         <td></td>
-                        <td align="middle"><a href="/edit?login=<%out.print(log);%>
-                                                    &password=<%out.print(pass);%>
-                                                    &email=<%out.print(email);%>">Edit</a></td>
+                        <td align="middle"><a href="/edit?login=<%out.print(currentUser.getLogin());%>
+                                                    &password=<%out.print(currentUser.getPassword());%>
+                                                    &email=<%out.print(currentUser.getEmail());%>">Edit</a></td>
                     </tr>
-                    <%--<input type="submit" value="Save">--%>
                 </form>
                 <tr>
                     <br>
@@ -70,6 +56,8 @@
                             <input type="submit" value="Logout">
                         </form>
                     </td>
+                    <br>
+                    <td></td>
                     <td align="middle">
                         <form action="delete" method="get">
                             <input type="submit" value="Delete Account">

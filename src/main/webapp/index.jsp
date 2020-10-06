@@ -1,4 +1,4 @@
-<%@ page import="java.util.concurrent.atomic.AtomicInteger" %>
+<%@ page import="entity.user.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: midicq
@@ -14,13 +14,7 @@
 </head>
 <body>
 <%
-    String log = (String) session.getAttribute("log");
-    String pass = (String) session.getAttribute("pass");
-    String email = (String) session.getAttribute("email");
-
-    out.println(log);
-    out.println(pass);
-    out.println(email);
+    User currentUser = (User) session.getAttribute("user");
 %>
 <nav>
     <ul>
@@ -32,7 +26,11 @@
     </ul>
 </nav>
 <div align="middle">
-    <h1>Welcome to Restaurant<%if(log != null){out.println(", "+log+"!");}else{out.println("!");};%></h1>
+    <h1>
+        Welcome to Restaurant<%if (currentUser != null)
+        {out.println(", "+currentUser.getLogin()+"!");}
+        else{out.println("!");};%>
+    </h1>
 </div>
 </body>
 </html>
