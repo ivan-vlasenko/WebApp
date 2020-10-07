@@ -1,10 +1,11 @@
-<%@ page import="entity.user.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: midicq
   Date: 9/11/2020
   Time: 6:47 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="entity.user.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -35,7 +36,7 @@
             <tr>
                 <td align="middle">Login:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="newLogin"
+                    <input align="middle" type="text" name="updateLogin"
                            value="<%=currentUser.getLogin()%>"
                     />
                 </td>
@@ -43,7 +44,7 @@
             <tr>
                 <td align="middle">Password:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="newPassword"
+                    <input align="middle" type="text" name="updatePass"
                            value="<%=currentUser.getPassword()%>"
                     />
                 </td>
@@ -51,7 +52,7 @@
             <tr>
                 <td align="middle">Email:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="newEmail"
+                    <input align="middle" type="text" name="updateEmail"
                            value="<%=currentUser.getEmail()%>"
                     />
                 </td>

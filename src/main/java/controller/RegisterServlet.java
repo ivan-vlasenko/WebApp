@@ -37,20 +37,16 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-
         session.setAttribute("existError", null);
         session.setAttribute("emptyError", null);
-
-        boolean status;
 
         if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
             session.setAttribute("emptyError", EMPTY_ERROR_MESSAGE);
             response.sendRedirect("register.jsp");
         } else {
-            User user = new User(login, password, email);
-            status = UserDao.saveUser(user);
-            if (status) {
-                session.setAttribute("user", user);
+            User currentUser = new User(login, password, email);
+            if (UserDao.saveUser(currentUser)) {
+                session.setAttribute("user", currentUser);
                 response.sendRedirect("register-done.jsp");
             } else {
                 session.setAttribute("existError", EXIST_ERROR_MESSAGE);

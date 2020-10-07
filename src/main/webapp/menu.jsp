@@ -1,7 +1,6 @@
 <%@ page import="model.MenuItemDao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="entity.menu.*" %>
-<%@ page import="entity.user.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     MenuItemDao menuItemDao = new MenuItemDao();
@@ -13,9 +12,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<%
-    User currentUser = (User) session.getAttribute("user");
-%>
 <nav>
     <ul>
         <li><a href="index.jsp">HOME</a></li>

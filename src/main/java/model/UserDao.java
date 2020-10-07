@@ -44,15 +44,15 @@ public class UserDao {
         return status;
     }
 
-    public static boolean login(String log, String pass, String email) {
+    public static boolean login(User user) {
         ResultSet resultSet = null;
         try {
             jdbcConnection = DaoUtils.getConnection();
 
             statement = jdbcConnection.prepareStatement(LOGIN_USER);
-            statement.setString(1, log);
-            statement.setString(2, pass);
-            statement.setString(3, email);
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getEmail());
 
 
             resultSet = statement.executeQuery();

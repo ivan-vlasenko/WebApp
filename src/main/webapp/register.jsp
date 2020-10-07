@@ -1,4 +1,4 @@
-<%@ page import="entity.user.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: midicq
   Date: 9/11/2020
@@ -13,8 +13,6 @@
 </head>
 <body>
 <%
-    User currentUser = (User) session.getAttribute("user");
-
     String existErrorMessage = (String) session.getAttribute("existError");
     String emptyErrorMessage = (String) session.getAttribute("emptyError");
 %>

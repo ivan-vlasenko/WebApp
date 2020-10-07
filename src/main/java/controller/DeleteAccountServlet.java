@@ -19,15 +19,12 @@ public class DeleteAccountServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        boolean status;
-        User currentUser;
 
         if (session.getAttribute("user") == null) {
             response.sendRedirect("login.jsp");
         } else {
-            currentUser = (User) session.getAttribute("user");
-            status = UserDao.deleteUser(currentUser);
-            if (status) {
+            User currentUser = (User) session.getAttribute("user");
+            if (UserDao.deleteUser(currentUser)) {
                 session.setAttribute("user", null);
                 response.sendRedirect("index.jsp");
             } else {

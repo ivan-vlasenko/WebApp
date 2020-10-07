@@ -3,6 +3,7 @@ package controller;
 import entity.user.User;
 import model.UserDao;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,21 +19,21 @@ public class EditAccountServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User currentUser = (User) session.getAttribute("user");
 
-        String newLogin = request.getParameter("newLogin");
-        String newPassword = request.getParameter("newPassword");
-        String newEmail = request.getParameter("newEmail");
+        String updateLogin = request.getParameter("updateLogin");
+        String updatePass = request.getParameter("updatePass");
+        String updateEmail = request.getParameter("updateEmail");
 
-        if (user.getLogin().equalsIgnoreCase(newLogin)
-                && user.getPassword().equalsIgnoreCase(newPassword)
-                && user.getEmail().equalsIgnoreCase(newEmail)) {
+        if (currentUser.getLogin().equalsIgnoreCase(updateLogin)
+                && currentUser.getPassword().equalsIgnoreCase(updatePass)
+                && currentUser.getEmail().equalsIgnoreCase(updateEmail)) {
 
             session.setAttribute("editError", EDIT_ERROR_MESSAGE);
             response.sendRedirect("edit.jsp");
         } else {
-            if (UserDao.updateUser(user, newLogin, newPassword, newEmail)) {
-                session.setAttribute("user", new User(newLogin, newPassword, newEmail));
+            if (UserDao.updateUser(currentUser, updateLogin, updatePass, updateEmail)) {
+                session.setAttribute("user", new User(updateLogin, updatePass, updateEmail));
                 response.sendRedirect("account.jsp");
             } else {
                 response.sendRedirect("edit.jsp");
@@ -41,6 +42,7 @@ public class EditAccountServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("edit.jsp");
+        RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/edit.jsp");
+        dispatcher.forward(request, response);
     }
 }

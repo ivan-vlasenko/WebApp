@@ -1,4 +1,4 @@
-<%@ page import="entity.user.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: midicq
   Date: 9/11/2020
@@ -13,8 +13,6 @@
 </head>
 <body>
 <%
-    User currentUser = (User) session.getAttribute("user");
-
     String emptyErrorMessage = (String) session.getAttribute("empty");
     String invalidErrorMessage = (String) session.getAttribute("invalid");
 %>
@@ -28,7 +26,7 @@
     </ul>
 </nav>
 <div align="middle">
-    <h1>Sign-in</h1>
+    <h1>Login</h1>
     <p>Please enter login(nickname) and password.
         Then click on Sign-in button.</p>
     <form action="sign-in" method="post">

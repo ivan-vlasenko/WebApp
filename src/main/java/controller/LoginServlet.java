@@ -44,8 +44,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("empty", EMPTY_ERROR_MESSAGE);
             response.sendRedirect("login.jsp");
         } else {
-            if (UserDao.login(login, password, email)) {
-                session.setAttribute("user", new User(login, password, email));
+            User currentUser = new User(login, password, email);
+            if (UserDao.login(currentUser)) {
+                session.setAttribute("user", currentUser);
                 response.sendRedirect("index.jsp");
             } else {
                 session.setAttribute("invalid", INVALID_ERROR_MESSAGE);
