@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/edit")
-public class EditUserServlet extends HttpServlet {
+public class EditAccountServlet extends HttpServlet {
     private static final String EDIT_ERROR_MESSAGE = "You didn't change any field!";
 
 

@@ -13,7 +13,7 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = "/sign-in")
-public class SignInServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     private static final String EMPTY_ERROR_MESSAGE = "Login, password or email is empty!";
     private static final String INVALID_ERROR_MESSAGE = "Login or password is invalid!";
 
@@ -24,7 +24,7 @@ public class SignInServlet extends HttpServlet {
         session.setAttribute("invalid", null);
 
         if (session.getAttribute("user") == null) {
-            response.sendRedirect("sign-page.jsp");
+            response.sendRedirect("login.jsp");
         } else {
             response.sendRedirect("account.jsp");
         }
@@ -42,14 +42,14 @@ public class SignInServlet extends HttpServlet {
 
         if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
             session.setAttribute("empty", EMPTY_ERROR_MESSAGE);
-            response.sendRedirect("sign-page.jsp");
+            response.sendRedirect("login.jsp");
         } else {
             if (UserDao.login(login, password, email)) {
                 session.setAttribute("user", new User(login, password, email));
                 response.sendRedirect("index.jsp");
             } else {
                 session.setAttribute("invalid", INVALID_ERROR_MESSAGE);
-                response.sendRedirect("sign-page.jsp");
+                response.sendRedirect("login.jsp");
             }
         }
     }

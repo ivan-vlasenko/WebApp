@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns ="/delete")
-public class AccountDeleteServlet extends HttpServlet {
+public class DeleteAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -23,7 +23,7 @@ public class AccountDeleteServlet extends HttpServlet {
         User currentUser;
 
         if (session.getAttribute("user") == null) {
-            response.sendRedirect("sign-page.jsp");
+            response.sendRedirect("login.jsp");
         } else {
             currentUser = (User) session.getAttribute("user");
             status = UserDao.deleteUser(currentUser);

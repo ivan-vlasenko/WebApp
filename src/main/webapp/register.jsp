@@ -22,7 +22,7 @@
     <ul>
         <li><a href="index.jsp">HOME</a></li>
         <li><a href="menu">MENU</a></li>
-        <li><a href="sign-in">SIGN IN</a></li>
+        <li><a href="sign-in">LOGIN</a></li>
         <li><a href="register">REGISTER</a></li>
         <li><a href="account">ACCOUNT</a></li>
     </ul>

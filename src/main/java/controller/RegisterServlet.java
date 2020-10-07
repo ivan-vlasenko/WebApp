@@ -13,7 +13,7 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = "/register")
-public class RegistrationServlet extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
     private static final String EMPTY_ERROR_MESSAGE = "All fields must be filled!";
     private static final String EXIST_ERROR_MESSAGE = "Such login or email is already exist!";
 
@@ -23,7 +23,7 @@ public class RegistrationServlet extends HttpServlet {
         session.setAttribute("emptyError", null);
 
         if (session.getAttribute("user") == null) {
-            response.sendRedirect("registration-page.jsp");
+            response.sendRedirect("register.jsp");
         } else {
             response.sendRedirect("account.jsp");
         }
@@ -45,16 +45,16 @@ public class RegistrationServlet extends HttpServlet {
 
         if (login.isEmpty() || password.isEmpty() || email.isEmpty()) {
             session.setAttribute("emptyError", EMPTY_ERROR_MESSAGE);
-            response.sendRedirect("registration-page.jsp");
+            response.sendRedirect("register.jsp");
         } else {
             User user = new User(login, password, email);
             status = UserDao.saveUser(user);
             if (status) {
                 session.setAttribute("user", user);
-                response.sendRedirect("registration-done-page.jsp");
+                response.sendRedirect("register-done.jsp");
             } else {
                 session.setAttribute("existError", EXIST_ERROR_MESSAGE);
-                response.sendRedirect("registration-page.jsp");
+                response.sendRedirect("register.jsp");
             }
         }
     }

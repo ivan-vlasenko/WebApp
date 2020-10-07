@@ -12,6 +12,7 @@ public class DaoUtils {
     private static final String LOGIN = "root";
     private static final String PASS = "635805";
 
+
     public static Connection getConnection(){
         Connection con = null;
         try{
