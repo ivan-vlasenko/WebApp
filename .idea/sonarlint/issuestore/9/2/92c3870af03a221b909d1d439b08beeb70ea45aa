@@ -1,0 +1,13 @@
+
+R	java:S106"9Replace this use of System.out or System.err by a logger.(Ú‘°	8¢şĞ.
+Y
+java:S1854">Remove this useless assignment to local variable "connection".(ÈØ“8¢şĞ.
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¿¨£ï8¢şĞ.
+Z
+java:S1118":Add a private constructor to hide the implicit public one.(î—÷ßşÿÿÿÿ8¢şĞ.
+]
+java:S1854"=Remove this useless assignment to local variable "closeable".(Õí°¸ÿÿÿÿÿ8¢şĞ.
+S	java:S106"9Replace this use of System.out or System.err by a logger.(–Ğ‡Ñ8¢şĞ.
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ìÍ¦‡8¢şĞ.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(Úßôƒùÿÿÿÿ8¢şĞ.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(¥ù‚ùÿÿÿÿ8¢şĞ.

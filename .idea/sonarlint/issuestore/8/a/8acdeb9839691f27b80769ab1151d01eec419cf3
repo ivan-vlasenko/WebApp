@@ -1,0 +1,18 @@
+
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(¥ω‚ωÿÿÿÿ
+d
+java:S1192"KDefine a constant instead of duplicating this literal "SQLState: " 3 times.(¥ω‚ωÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(¥ω‚ωÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(Ϊίτƒωÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(Ϊίτƒωÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(–Π‡Ρ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(¥ω‚ωÿÿÿÿ
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(Ϊίτƒωÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(–Π‡Ρ
+Z
+java:S1118":Add a private constructor to hide the implicit public one.(Μαϊÿÿÿÿ8¶ΈύΠ.
+c
+java:S1192"ODefine a constant instead of duplicating this literal "SQLException: " 3 times.(–Π‡Ρ
+g
+java:S1192"NDefine a constant instead of duplicating this literal "VendorError: " 3 times.(Ϊίτƒωÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(–Π‡Ρ
