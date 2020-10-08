@@ -6,7 +6,8 @@
     MenuItemDao menuItemDao = new MenuItemDao();
     List<MenuItem> menuItems = menuItemDao.getMenuItems();
 %>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <title>Menu</title>
     <link rel="stylesheet" href="style.css">

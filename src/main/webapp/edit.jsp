@@ -7,7 +7,8 @@
 --%>
 <%@ page import="model.user.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <title>Account</title>
     <link rel="stylesheet" href="style.css">
@@ -36,25 +37,31 @@
             <tr>
                 <td align="middle">Login:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="updateLogin"
-                           value="<%=currentUser.getLogin()%>"
-                    />
+                    <label>
+                        <input align="middle" type="text" name="updateLogin"
+                               value="<%=currentUser.getLogin()%>"
+                        />
+                    </label>
                 </td>
             </tr>
             <tr>
                 <td align="middle">Password:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="updatePass"
-                           value="<%=currentUser.getPassword()%>"
-                    />
+                    <label>
+                        <input align="middle" type="text" name="updatePass"
+                               value="<%=currentUser.getPassword()%>"
+                        />
+                    </label>
                 </td>
             </tr>
             <tr>
                 <td align="middle">Email:</td>
                 <td align="middle">
-                    <input align="middle" type="text" name="updateEmail"
-                           value="<%=currentUser.getEmail()%>"
-                    />
+                    <label>
+                        <input align="middle" type="text" name="updateEmail"
+                               value="<%=currentUser.getEmail()%>"
+                        />
+                    </label>
                 </td>
             </tr>
         <tr>

@@ -16,7 +16,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     private final UserDao userDao = new UserDao();
 
-    private static final String EMPTY_ERROR_MESSAGE = "Login, password or email is empty!";
+    private static final String EMPTY_ERROR_MESSAGE = "All fields must be filled!";
     private static final String INVALID_ERROR_MESSAGE = "Login or password is invalid!";
 
     private static final String EMPTY_ERROR = "empty";
