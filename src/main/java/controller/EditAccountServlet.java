@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/edit")
 public class EditAccountServlet extends HttpServlet {
+    private final UserDao userDao = new UserDao();
     private static final String EDIT_ERROR_MESSAGE = "You didn't change any field!";
 
 
@@ -32,7 +33,7 @@ public class EditAccountServlet extends HttpServlet {
             session.setAttribute("editError", EDIT_ERROR_MESSAGE);
             response.sendRedirect("edit.jsp");
         } else {
-            if (UserDao.updateUser(currentUser, updateLogin, updatePass, updateEmail)) {
+            if (userDao.updateUser(currentUser, updateLogin, updatePass, updateEmail)) {
                 session.setAttribute("user", new User(updateLogin, updatePass, updateEmail));
                 response.sendRedirect("account.jsp");
             } else {

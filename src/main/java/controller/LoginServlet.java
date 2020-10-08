@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/sign-in")
 public class LoginServlet extends HttpServlet {
+    private final UserDao userDao = new UserDao();
     private static final String EMPTY_ERROR_MESSAGE = "Login, password or email is empty!";
     private static final String INVALID_ERROR_MESSAGE = "Login or password is invalid!";
 
@@ -45,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
         } else {
             User currentUser = new User(login, password, email);
-            if (UserDao.login(currentUser)) {
+            if (userDao.login(currentUser)) {
                 session.setAttribute("user", currentUser);
                 response.sendRedirect("index.jsp");
             } else {

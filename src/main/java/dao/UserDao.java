@@ -12,13 +12,11 @@ public class UserDao {
     private static final String DELETE_USER = "delete from users where login=? and email=? and password=?";
     private static final String UPDATE_USER = "update users set login=?, password=?, email=? where login=?";
 
-    private static Connection jdbcConnection = null;
-    private static PreparedStatement statement = null;
+    public boolean saveUser(User user) {
+        Connection jdbcConnection = null;
+        PreparedStatement statement = null;
 
-    private static boolean status = false;
-
-
-    public static boolean saveUser(User user) {
+        boolean status = false;
         try {
             jdbcConnection = DaoUtils.getConnection();
             jdbcConnection.setAutoCommit(false);
@@ -32,9 +30,7 @@ public class UserDao {
 
             jdbcConnection.commit();
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            ex.printStackTrace();
 
             DaoUtils.rollbackQuietly(jdbcConnection);
         } finally {
@@ -44,7 +40,9 @@ public class UserDao {
         return status;
     }
 
-    public static boolean login(User user) {
+    public boolean login(User user) {
+        Connection jdbcConnection = null;
+        PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             jdbcConnection = DaoUtils.getConnection();
@@ -66,11 +64,17 @@ public class UserDao {
             return false;
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            DaoUtils.closeQuietly(resultSet, statement, jdbcConnection);
         }
         return false;
     }
 
-    public static boolean deleteUser(User user) {
+    public boolean deleteUser(User user) {
+        Connection jdbcConnection = null;
+        PreparedStatement statement = null;
+
+        boolean status = false;
         try {
             jdbcConnection = DaoUtils.getConnection();
             jdbcConnection.setAutoCommit(false);
@@ -84,9 +88,7 @@ public class UserDao {
 
             jdbcConnection.commit();
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            ex.printStackTrace();
 
             DaoUtils.rollbackQuietly(jdbcConnection);
         } finally {
@@ -96,7 +98,11 @@ public class UserDao {
         return status;
     }
 
-    public static boolean updateUser(User currentUser, String updateLogin, String updatePass, String updateEmail) {
+    public boolean updateUser(User currentUser, String updateLogin, String updatePass, String updateEmail) {
+        Connection jdbcConnection = null;
+        PreparedStatement statement = null;
+
+        boolean status = false;
         try {
             jdbcConnection = DaoUtils.getConnection();
             jdbcConnection.setAutoCommit(false);
@@ -111,9 +117,7 @@ public class UserDao {
 
             jdbcConnection.commit();
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            ex.printStackTrace();
 
             DaoUtils.rollbackQuietly(jdbcConnection);
         } finally {

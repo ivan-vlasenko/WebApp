@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
+    private final UserDao userDao = new UserDao();
     private static final String EMPTY_ERROR_MESSAGE = "All fields must be filled!";
     private static final String EXIST_ERROR_MESSAGE = "Such login or email is already exist!";
 
@@ -45,7 +46,7 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("register.jsp");
         } else {
             User currentUser = new User(login, password, email);
-            if (UserDao.saveUser(currentUser)) {
+            if (userDao.saveUser(currentUser)) {
                 session.setAttribute("user", currentUser);
                 response.sendRedirect("register-done.jsp");
             } else {
