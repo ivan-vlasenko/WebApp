@@ -17,8 +17,8 @@ public class EditAccountServlet extends HttpServlet {
     private final UserDao userDao = new UserDao();
     private static final String EDIT_ERROR_MESSAGE = "You didn't change any field!";
 
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("user");
 
@@ -42,6 +42,7 @@ public class EditAccountServlet extends HttpServlet {
         }
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/edit.jsp");
         dispatcher.forward(request, response);

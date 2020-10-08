@@ -3,7 +3,6 @@ package controller;
 import model.user.User;
 import dao.UserDao;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +14,8 @@ import java.io.IOException;
 public class DeleteAccountServlet extends HttpServlet {
     private final UserDao userDao = new UserDao();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("user") == null) {
