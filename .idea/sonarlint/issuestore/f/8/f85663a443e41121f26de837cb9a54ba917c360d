@@ -1,0 +1,21 @@
+
+e
+java:S1192"JDefine a constant instead of duplicating this literal "login.jsp" 3 times.(‹òÊûÿÿÿÿ
+U
+java:S1161":Add the "@Override" annotation above this method signature(Ïû©Öûÿÿÿÿ
+n
+java:S1989"SHandle the following exception that could be thrown by "sendRedirect": IOException.(²…û­ùÿÿÿÿ
+P
+java:S1161!":Add the "@Override" annotation above this method signature(‹¨¯¿
+a
+java:S1192"FDefine a constant instead of duplicating this literal "empty" 3 times.(™ñ—«ÿÿÿÿÿ
+n
+java:S19892"SHandle the following exception that could be thrown by "sendRedirect": IOException.(Šûßıÿÿÿÿ
+^
+java:S1192"HDefine a constant instead of duplicating this literal "invalid" 3 times.(İ¹
+n
+java:S19895"SHandle the following exception that could be thrown by "sendRedirect": IOException.(‹òÊûÿÿÿÿ
+n
+java:S1989-"SHandle the following exception that could be thrown by "sendRedirect": IOException.(‹òÊûÿÿÿÿ
+n
+java:S1989"SHandle the following exception that could be thrown by "sendRedirect": IOException.(‹òÊûÿÿÿÿ

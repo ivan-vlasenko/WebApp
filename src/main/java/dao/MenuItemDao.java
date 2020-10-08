@@ -1,6 +1,6 @@
-package model;
+package dao;
 
-import entity.menu.*;
+import model.menu.*;
 
 import java.sql.*;
 import java.util.ArrayList;

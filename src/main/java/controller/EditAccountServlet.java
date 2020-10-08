@@ -1,7 +1,7 @@
 package controller;
 
-import entity.user.User;
-import model.UserDao;
+import model.user.User;
+import dao.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

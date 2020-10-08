@@ -1,4 +1,4 @@
-package entity.menu;
+package model.menu;
 
 
 import java.util.Objects;
@@ -22,38 +22,43 @@ public class MenuItem {
         return category;
     }
 
-    public static MenuBuilderImpl newBuilder() {
-        return new MenuItem().new MenuBuilderImpl();
+    public static MenuItemBuilder newBuilder() {
+        return new MenuItemBuilder();
     }
 
-    public class MenuBuilderImpl implements MenuBuilder {
+    public static class MenuItemBuilder {
+        private String name;
+        private String cuisine;
+        private MenuItemCategory category;
 
-        private MenuBuilderImpl() {}
+        private MenuItemBuilder() {}
 
-        @Override
-        public MenuBuilder setName(String name) {
-            MenuItem.this.name = name;
-
-            return this;
-        }
-
-        @Override
-        public MenuBuilder setCategory(MenuItemCategory category) {
-            MenuItem.this.category = category;
+        public MenuItemBuilder setName(String name) {
+            this.name = name;
 
             return this;
         }
 
-        @Override
-        public MenuBuilder fromCuisine(String cuisine) {
-            MenuItem.this.cuisine = cuisine;
+        public MenuItemBuilder setCategory(MenuItemCategory category) {
+            this.category = category;
 
             return this;
         }
 
-        @Override
+        public MenuItemBuilder fromCuisine(String cuisine) {
+            this.cuisine = cuisine;
+
+            return this;
+        }
+
         public MenuItem build() {
-            return MenuItem.this;
+            MenuItem menuItem = new MenuItem();
+
+            menuItem.name = this.name;
+            menuItem.category = this.category;
+            menuItem.cuisine = this.cuisine;
+
+            return menuItem;
         }
     }
 

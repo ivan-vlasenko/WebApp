@@ -1,4 +1,4 @@
-package entity.user;
+package model.user;
 
 import java.util.Objects;
 
@@ -7,9 +7,6 @@ public class User {
     private String password;
     private String email;
     private int id;
-
-    public User() {
-    }
 
     public User(String login, String password, String email, int id) {
         this.login = login;

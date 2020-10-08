@@ -5,7 +5,7 @@
   Time: 7:57 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="entity.user.User" %>
+<%@ page import="model.user.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">

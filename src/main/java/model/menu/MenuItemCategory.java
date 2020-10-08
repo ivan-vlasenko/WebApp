@@ -1,4 +1,4 @@
-package entity.menu;
+package model.menu;
 
 public enum MenuItemCategory {
     MAIN_MEAL,

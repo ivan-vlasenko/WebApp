@@ -1,6 +1,6 @@
-<%@ page import="model.MenuItemDao" %>
+<%@ page import="dao.MenuItemDao" %>
 <%@ page import="java.util.List" %>
-<%@ page import="entity.menu.*" %>
+<%@ page import="model.menu.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     MenuItemDao menuItemDao = new MenuItemDao();
